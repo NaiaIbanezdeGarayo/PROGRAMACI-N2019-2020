@@ -38,7 +38,7 @@ public class Ej4 {
 
     private static void calcularDiferencia(LocalDate fecha1, LocalDate fecha2) {
         Period periodo = Period.between(fecha1, fecha2);
-        JOptionPane.showMessageDialog(null, "Diferencia entre las 2 fechas introducidas " + periodo);
+        JOptionPane.showMessageDialog(null, "Diferencia entre las 2 fechas introducidas " + periodo.getYears() + " año(s) " + periodo.getMonths() +  " mes(es) " + periodo.getDays() + " día(s)");
     }
     
 }
