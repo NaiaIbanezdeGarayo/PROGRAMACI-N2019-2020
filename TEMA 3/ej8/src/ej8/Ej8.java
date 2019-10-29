@@ -8,6 +8,7 @@ package ej8;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,13 +44,21 @@ public class Ej8 {
 
     private static void opcionesMenu(String menu) {
         switch(menu){
-            case "a": calcularEdad();
+            case "a" : calcularEdad();
+            break;
+            case "A" : calcularEdad();
             break;
             case "b": sumar();
             break;
+            case "B": sumar();
+            break;
             case "c": contarVocales();
             break;
+            case "C": contarVocales();
+            break;
             case "d": salir();
+            break;
+            case "D": salir();
             break;
             default: JOptionPane.showMessageDialog(null, "Introduce una opción valida");
             
@@ -58,24 +67,33 @@ public class Ej8 {
     }
 
     private static void calcularEdad() {
-        String fechaNac = JOptionPane.showInputDialog("Introduce tú fecha de nacimiento para adivinar cuántos años tienes" + "\n" +
-                                                      "FORMATO: dd/mm/yyyy");
-        
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fechaN = LocalDate.parse(fechaNac, formato);
-        
-        Period edad = Period.between(fechaN, LocalDate.now());
-        
-        JOptionPane.showMessageDialog(null, "Tienes " + edad.getYears() + " años");
-        
+        try{
+            String fechaNac = JOptionPane.showInputDialog("Introduce tú fecha de nacimiento para adivinar cuántos años tienes" + "\n" +
+                                                          "FORMATO: dd/MM/yyyy");
+
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaN = LocalDate.parse(fechaNac, formato);
+
+            Period edad = Period.between(fechaN, LocalDate.now());
+
+            JOptionPane.showMessageDialog(null, "Tienes " + edad.getYears() + " años");
+        }
+        catch(DateTimeParseException e){
+            JOptionPane.showMessageDialog(null, "La fecha tecleada no es correcta");
+        }
     }
 
     private static void sumar() {
-        int n1 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
-        int n2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
-        
-        int suma = n1 + n2;
-        JOptionPane.showMessageDialog(null, "La suma de " + n1 + " y " + n2 + " es: " + suma);
+        try {
+            int n1 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
+            int n2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
+
+            int suma = n1 + n2;
+            JOptionPane.showMessageDialog(null, "La suma de " + n1 + " y " + n2 + " es: " + suma);
+        }
+        catch(NumberFormatException | NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Introduce correctamente un número");
+        }
     }
 
     private static void contarVocales() {
