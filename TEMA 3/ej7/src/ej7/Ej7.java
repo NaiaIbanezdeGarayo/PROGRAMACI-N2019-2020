@@ -23,7 +23,7 @@ public class Ej7 {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        double [] dinero = new double [12];
+        double [] dinero = new double [15];
         dinero[0] = 500;
         dinero[1] = 200;
         dinero[2] = 100;
@@ -36,7 +36,11 @@ public class Ej7 {
         dinero[9] = 0.5;
         dinero[10] = 0.2;
         dinero[11] = 0.1;
-        int [] cambio = new int [12];
+        dinero[12] = 0.05;
+        dinero[13] = 0.02;
+        dinero[14] = 0.01;
+        
+        int [] cambio = new int [15];
         pedirImporte();
         darcambios(dinero,cambio);
         
@@ -58,7 +62,9 @@ public class Ej7 {
 
     private static void darcambios(double[] dinero, int[] cambio) {
         vuelta = pago - importe;
+        vuelta = Math.rint(vuelta*100)/100;
         do {
+            
            if (vuelta > 500) {
                 cambio[0]+= 1;
                 vuelta= vuelta - 500;
@@ -95,6 +101,15 @@ public class Ej7 {
             }else if (vuelta > 0.1) {
                 cambio[11]+= 1;
                 vuelta= vuelta - 0.1;
+            }else if(vuelta > 0.05){
+                cambio[12]+= 1;
+                vuelta = vuelta - 0.05;
+            }else if(vuelta > 0.02){
+                cambio[13]+= 1;
+                vuelta = vuelta - 0.02;
+            }else if(vuelta > 0.01){
+                cambio[14]+= 1;
+                vuelta = vuelta - 0.01;
             }
            
            
