@@ -22,7 +22,7 @@ public class Ej8 {
         // TODO code application logic here
         
         int [] codigos = new int [5];
-        int [][] faltas = new int [5][31];
+        int [][] faltas = new int [5][30];
         int a = 0;
         int continuar;
         do{
@@ -39,7 +39,12 @@ public class Ej8 {
     }
 
     private static void calcularFaltas(int[] codigos, int[][] faltas) {
-         
+        String texto = "EL total de faltas de cada alumno es: \n";
+        for (int i = 0; i < codigos.length && codigos[i]!=0; i++) {
+            texto=texto + codigos[i] + " - " + faltas[i] + "\n";
+        }
+        
+        JOptionPane.showMessageDialog(null, texto);
     }
     
 }

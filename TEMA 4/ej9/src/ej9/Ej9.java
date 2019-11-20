@@ -43,6 +43,7 @@ public class Ej9 {
             }
             continuar = JOptionPane.showConfirmDialog(null, "¿Quieres continuar?");
         }while (continuar == 0);
+        String texto = "";
         
     }
     
