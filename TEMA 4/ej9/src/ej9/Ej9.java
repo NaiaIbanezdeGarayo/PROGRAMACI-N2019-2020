@@ -43,8 +43,29 @@ public class Ej9 {
             }
             continuar = JOptionPane.showConfirmDialog(null, "¿Quieres continuar?");
         }while (continuar == 0);
-        String texto = "";
+        ordenarArray(cantProductos,cProductos);
         
+    }
+
+    private static void ordenarArray(int[] cantProductos, int[] cProductos) {
+        String texto=" ";
+        for (int i = 0; i < cProductos.length-1; i++) {
+            for (int j = i; j < cProductos.length; j++) {
+                if (cantProductos[i]>cantProductos[j]) {
+                    int variableauxiliar = cantProductos[i];
+                    int codauxiliar = cProductos[i];
+                    cantProductos[i] = cantProductos[j];
+                    cProductos[i] = cProductos[j];
+                    cProductos[j] = codauxiliar;
+                    cantProductos[j] = variableauxiliar;
+                }
+            }
+        }
+        for (int n = cProductos.length-1; n > 0; n--) {
+            if (cantProductos[n]!=0) {
+                texto += "El articulo " + cProductos[n] + " ha venido " + cantProductos[n] +"\n";
+            } 
+        }JOptionPane.showMessageDialog(null, texto);
     }
     
 }
