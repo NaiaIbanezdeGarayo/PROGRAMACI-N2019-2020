@@ -5,6 +5,9 @@
  */
 package ej11;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 1gdaw06
@@ -53,7 +56,12 @@ public class Ej11 {
         precio [3][3] = 1.1;
         
         int [][] cantidad = new int [4][4];
-        cantidad [0][0] = 5;
+        for (int i = 0; i < cantidad.length; i++) {
+            for (int j = 0; j < cantidad.length; j++) {
+                cantidad[i][j]=5;
+            }
+        }
+        /*cantidad [0][0] = 5;
         cantidad [0][1] = 5;
         cantidad [0][2] = 5;
         cantidad [0][3] = 5;
@@ -65,11 +73,48 @@ public class Ej11 {
         cantidad [2][1] = 5;
         cantidad [2][2] = 5;
         cantidad [2][3] = 5;
-        cantidad [3][0] = 15;
+        cantidad [3][0] = 5;
         cantidad [3][1] = 5;
         cantidad [3][2] = 5;
-        cantidad [3][3] = 5;
+        cantidad [3][3] = 5;*/
+        /*Arrays.fill(cantidad,5);*/
         
+        menu();
+    }
+
+    private static void menu() {
+        int m = Integer.parseInt(JOptionPane.showInputDialog("Introduce una opción"
+                + "1. Pedir golosina \n"
+                + "2. Mostrar golosinas \n"
+                + "3. Rellenar golosinas \n"
+                + "4. Apagar máquina \n"));
+        switch(m){
+            case 1: pedirGolosina();
+            break;
+            case 2: mostrarGolosinas();
+            break;
+            case 3: rellenarGolosinas();
+            break;
+            case 4: apagarMaquina();
+            break;
+            default: JOptionPane.showMessageDialog(null, "Introduce correctamente la opción");
+        }
+    }
+
+    private static void pedirGolosina() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void mostrarGolosinas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void rellenarGolosinas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void apagarMaquina() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
