@@ -16,19 +16,20 @@ public class Ej2v2 {
 
     public static ArrayList <ArrayList <Integer>> alumnos;
     public static ArrayList <String> idioma;
-    public static ArrayList <String> nivel;
+    public static ArrayList <ArrayList<String>> nivel;
     public static void main(String[] args) {
         // TODO code application logic here
         
         alumnos= new ArrayList<>();
-        alumnos.add(new ArrayList<Integer>());
+       
         idioma = new ArrayList();
-        nivel = new ArrayList();
+        //nivel = new ArrayList();
         añadirAlumnos();
     }
 
     private static void añadirAlumnos() {
         do {
+            
             String i = JOptionPane.showInputDialog("Introduce el idioma tal y como está escrito: \n"
                                             + " Inglés \n"
                                             + " Francés \n"
@@ -36,13 +37,18 @@ public class Ej2v2 {
                                             + " Ruso");
             if (!idioma.contains(i)) {
                 idioma.add(i);
+                alumnos.add(new ArrayList<Integer>());
             }
-                
+                 
             String n = JOptionPane.showInputDialog("Introduce el nivel: \n"
                                         + "B --> Básico \n"
                                         + "M --> Medio \n"
                                         + "P --> Perfeccionamiento"); 
-            nivel.add(n);
+            if (!nivel.contains(n)) {
+                nivel.add(new ArrayList<String>());
+                
+            }
+           
             
             int cant = Integer.parseInt(JOptionPane.showInputDialog("Introduce la cantidad de alumnos que hay en esa clase"));
             
@@ -55,7 +61,7 @@ public class Ej2v2 {
         String texto="";
         for (int i = 0; i < alumnos.size(); i++) {
             for (int j = 0; j < alumnos.size(); j++) {
-                texto += "Idioma: " + idioma.get(i) + " Nivel: " + nivel.get(i) + alumnos.get(i).get(j);
+                texto += "Idioma: " + idioma.get(i) + " Nivel: " + nivel.get(i) + " Alumnos: " +alumnos.get(i).get(j);
             }
         }
         
