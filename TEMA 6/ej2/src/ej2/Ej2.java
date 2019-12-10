@@ -21,26 +21,36 @@ public class Ej2 {
         // TODO code application logic here
         
         Persona p = new Persona();
-        
-        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del alumno"));
-        p.setcAlumno(codigo);
-        
-        String nombre = JOptionPane.showInputDialog("Introduce el nombre del alumno");
-        p.setnAlumno(nombre);
-        
-        String domicilio = JOptionPane.showInputDialog("Introduce el domicilio del alumno");
-        p.setDomicilio(domicilio);
-        
-        String telefono = JOptionPane.showInputDialog("Introduce el número de teléfono del alumnow");
-        p.setTelefono(telefono);
-        
-        int cod = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del estudiante que quieres"));
-        if (cod.compareTo == codigo) {
-            
+        int codigo = 0;
+        try{
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del alumno"));
+            p.setcAlumno(codigo);
+
+            String nombre = JOptionPane.showInputDialog("Introduce el nombre del alumno");
+            p.setnAlumno(nombre);
+
+            String domicilio = JOptionPane.showInputDialog("Introduce el domicilio del alumno");
+            p.setDomicilio(domicilio);
+
+            String telefono = JOptionPane.showInputDialog("Introduce el número de teléfono del alumno");
+            p.setTelefono(telefono);
+            JOptionPane.showMessageDialog(null, "Los datos se han introducido correctamente");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
         }
+        int cod = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del estudiante que quieres"));
         
-        JOptionPane.showMessageDialog(null, "Código del estudiante: " + p.getcAlumno() + "Nombre: " + p.getnAlumno()
-                                        + "Domicilio: " + p.getDomicilio() + "Teléfono: " + p.getTelefono());
+            if (cod == codigo) {
+                JOptionPane.showMessageDialog(null, "Código del estudiante: " + p.getcAlumno() + "\n" + "Nombre: " + p.getnAlumno() + "\n"
+                                            + "Domicilio: " + p.getDomicilio()  + "\n" + "Teléfono: " + p.getTelefono());
+            }else   
+                JOptionPane.showMessageDialog(null, "Los datos introducidos no son correctos");
+           
+        
+        
+        
+        
+        
     }
     
 }
