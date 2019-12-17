@@ -21,26 +21,32 @@ public class Ej2 {
         // TODO code application logic here
         
         Persona p = new Persona();
-        int codigo = 0;
+        String codigo;
         try{
-            codigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del alumno"));
-            p.setcAlumno(codigo);
+            do {
+                codigo = JOptionPane.showInputDialog("Introduce el código del alumno");
+                p.setcAlumno(codigo);
 
-            String nombre = JOptionPane.showInputDialog("Introduce el nombre del alumno");
-            p.setnAlumno(nombre);
+                String nombre = JOptionPane.showInputDialog("Introduce el nombre del alumno");
+                p.setnAlumno(nombre);
 
-            String domicilio = JOptionPane.showInputDialog("Introduce el domicilio del alumno");
-            p.setDomicilio(domicilio);
+                String domicilio = JOptionPane.showInputDialog("Introduce el domicilio del alumno");
+                p.setDomicilio(domicilio);
 
-            String telefono = JOptionPane.showInputDialog("Introduce el número de teléfono del alumno");
-            p.setTelefono(telefono);
-            JOptionPane.showMessageDialog(null, "Los datos se han introducido correctamente");
+                String telefono = JOptionPane.showInputDialog("Introduce el número de teléfono del alumno");
+                p.setTelefono(telefono);
+                JOptionPane.showMessageDialog(null, "Los datos se han introducido correctamente");
+                
+                /*Persona p = ;*/
+            } while (JOptionPane.showConfirmDialog(null, "Quieres seguir introduciendo alumnos")!= 1);
+            
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        int cod = Integer.parseInt(JOptionPane.showInputDialog("Introduce el código del estudiante que quieres"));
+        String cod = JOptionPane.showInputDialog("Introduce el código del estudiante que quieres");
         
-            if (cod == codigo) {
+            if (cod .equalsIgnoreCase(codigo)) {
                 JOptionPane.showMessageDialog(null, "Código del estudiante: " + p.getcAlumno() + "\n" + "Nombre: " + p.getnAlumno() + "\n"
                                             + "Domicilio: " + p.getDomicilio()  + "\n" + "Teléfono: " + p.getTelefono());
             }else   

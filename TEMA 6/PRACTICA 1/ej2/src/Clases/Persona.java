@@ -5,30 +5,35 @@
  */
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 1gdaw06
  */
     public class Persona {
-    private int cAlumno;
+    private String cAlumno;
     private String nAlumno;
     private String domicilio;
     private String telefono;
-
+    private ArrayList <Persona> alumnos;
+    
     public Persona() {
     }
 
-    public Persona(int cAlumno, String nAlumno, String domicilio) {
+    public Persona(String cAlumno, String nAlumno, String domicilio, String telefono, ArrayList<Persona> alumnos) {
         this.cAlumno = cAlumno;
         this.nAlumno = nAlumno;
         this.domicilio = domicilio;
+        this.telefono = telefono;
+        this.alumnos = alumnos;
     }
 
-    public int getcAlumno() {
+    public String getcAlumno() {
         return cAlumno;
     }
 
-    public void setcAlumno(int cAlumno) {
+    public void setcAlumno(String cAlumno) {
         this.cAlumno = cAlumno;
     }
 
@@ -55,6 +60,21 @@ package Clases;
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public ArrayList<Persona> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(ArrayList<Persona> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+    @Override
+    public String toString() {
+        return "Alumno: \n" + "Código:" + cAlumno + " Nombre: " + nAlumno ;
+    }
+
+    
     
     
 }
