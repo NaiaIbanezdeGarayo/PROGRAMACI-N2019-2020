@@ -16,16 +16,18 @@ public class Piloto {
     private String nomPiloto;
     private String apePiloto;
     private Integer nLicencia;
+    
     private ArrayList <Vuelo> vuelos;
 
     public Piloto() {
     }
 
-    public Piloto(String cPiloto, String nomPiloto, String apePiloto, Integer nLicencia) {
+    public Piloto(String cPiloto, String nomPiloto, String apePiloto, Integer nLicencia, ArrayList<Vuelo> vuelos) {
         this.cPiloto = cPiloto;
         this.nomPiloto = nomPiloto;
         this.apePiloto = apePiloto;
         this.nLicencia = nLicencia;
+        this.vuelos = vuelos;
     }
 
     public String getcPiloto() {
@@ -58,6 +60,22 @@ public class Piloto {
 
     public void setnLicencia(Integer nLicencia) {
         this.nLicencia = nLicencia;
+    }
+
+    public ArrayList<Vuelo> getVuelos() {
+        return vuelos;
+    }
+
+    public void setVuelos(ArrayList<Vuelo> vuelos) {
+        this.vuelos = vuelos;
+    }
+
+    public void agregarNuevo(){}
+    public void asignarAVuelo(){}
+    public void cancelarVuelo(){}
+    public void modificar(){}
+    public Piloto buscar(){
+        return null;
     }
     
     

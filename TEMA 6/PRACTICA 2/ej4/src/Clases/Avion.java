@@ -16,16 +16,18 @@ public class Avion{
     private String cAvion;
     private int nAsiento;
     private String compartimentos;
+    
     private ArrayList <Vuelo> vuelos;
 
     public Avion() {
     }
 
-    public Avion(String aerolinea, String cAvion, int nAsiento, String compartimentos) {
+    public Avion(String aerolinea, String cAvion, int nAsiento, String compartimentos, ArrayList<Vuelo> vuelos) {
         this.aerolinea = aerolinea;
         this.cAvion = cAvion;
         this.nAsiento = nAsiento;
         this.compartimentos = compartimentos;
+        this.vuelos = vuelos;
     }
 
     public String getAerolinea() {
@@ -59,6 +61,25 @@ public class Avion{
     public void setCompartimentos(String compartimentos) {
         this.compartimentos = compartimentos;
     }
+
+    public ArrayList<Vuelo> getVuelos() {
+        return vuelos;
+    }
+
+    public void setVuelos(ArrayList<Vuelo> vuelos) {
+        this.vuelos = vuelos;
+    }
+    
+    public Avion obtener(){
+        return null;
+    }
+    public void asignarAVuelo(){}
+    
+    public void cancelarVuelo(){}
+
+    
+
+    
     
     
 }
