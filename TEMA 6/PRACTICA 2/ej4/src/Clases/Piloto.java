@@ -17,11 +17,18 @@ public class Piloto {
     private String apePiloto;
     private Integer nLicencia;
     
-    private ArrayList <Vuelo> vuelos;
+    private ArrayList <Vuelo> vuelos = new ArrayList<>();
 
     public Piloto() {
     }
 
+    public Piloto(String cPiloto, String nomPiloto, String apePiloto, Integer nLicencia) {
+        this.cPiloto = cPiloto;
+        this.nomPiloto = nomPiloto;
+        this.apePiloto = apePiloto;
+        this.nLicencia = nLicencia;
+    }
+    
     public Piloto(String cPiloto, String nomPiloto, String apePiloto, Integer nLicencia, ArrayList<Vuelo> vuelos) {
         this.cPiloto = cPiloto;
         this.nomPiloto = nomPiloto;

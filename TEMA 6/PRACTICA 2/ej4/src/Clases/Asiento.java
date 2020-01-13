@@ -22,6 +22,12 @@ public class Asiento {
     public Asiento() {
     }
 
+    public Asiento(int nAsiento, Boolean estado, String compartimiento) {
+        this.nAsiento = nAsiento;
+        this.estado = estado;
+        this.compartimiento = compartimiento;
+    }
+    
     public Asiento(int nAsiento, Boolean estado, String compartimiento, Pasajero pasajero, Vuelo vuelo) {
         this.nAsiento = nAsiento;
         this.estado = estado;

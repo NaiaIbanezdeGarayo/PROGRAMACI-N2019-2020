@@ -24,13 +24,25 @@ public class Vuelo {
     
     private Avion avion;
     private Piloto piloto;
-    private ArrayList <Asiento> asientos;
-    private ArrayList <Pasajero> pasajeros;
+    private ArrayList <Asiento> asientos = new ArrayList<>();
+    private ArrayList <Pasajero> pasajeros = new ArrayList<>();
     //Tal y como poner en el diagrama: private Pasajero pasajero;
     private Ciudad ciudad;
     
     public Vuelo() {
     }
+
+    public Vuelo(int nVuelo, String h_salida, String h_llegada, String l_origen, String l_destino, Date f_salida, Date f_regreso, String tipoVuelo) {
+        this.nVuelo = nVuelo;
+        this.h_salida = h_salida;
+        this.h_llegada = h_llegada;
+        this.l_origen = l_origen;
+        this.l_destino = l_destino;
+        this.f_salida = f_salida;
+        this.f_regreso = f_regreso;
+        this.tipoVuelo = tipoVuelo;
+    }
+    
 
     public Vuelo(int nVuelo, String h_salida, String h_llegada, String l_origen, String l_destino, Date f_salida, Date f_regreso, String tipoVuelo, Avion avion, Piloto piloto, ArrayList<Asiento> asientos, ArrayList<Pasajero> pasajeros, Ciudad ciudad) {
         this.nVuelo = nVuelo;
@@ -136,6 +148,10 @@ public class Vuelo {
         this.asientos = asientos;
     }
 
+    public void setAsientos(Asiento a){
+        this.asientos.add(a);
+    }
+    
     public ArrayList<Pasajero> getPasajeros() {
         return pasajeros;
     }
@@ -143,6 +159,11 @@ public class Vuelo {
     public void setPasajeros(ArrayList<Pasajero> pasajeros) {
         this.pasajeros = pasajeros;
     }
+    
+    public void setPasajeros(Pasajero p){
+        this.pasajeros.add(p);
+    }
+        
 
     public Ciudad getCiudad() {
         return ciudad;

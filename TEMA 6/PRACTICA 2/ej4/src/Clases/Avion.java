@@ -17,10 +17,18 @@ public class Avion{
     private int nAsiento;
     private String compartimentos;
     
-    private ArrayList <Vuelo> vuelos;
+    private ArrayList <Vuelo> vuelos = new ArrayList<>();
 
     public Avion() {
     }
+
+    public Avion(String aerolinea, String cAvion, int nAsiento, String compartimentos) {
+        this.aerolinea = aerolinea;
+        this.cAvion = cAvion;
+        this.nAsiento = nAsiento;
+        this.compartimentos = compartimentos;
+    }
+    
 
     public Avion(String aerolinea, String cAvion, int nAsiento, String compartimentos, ArrayList<Vuelo> vuelos) {
         this.aerolinea = aerolinea;
@@ -68,6 +76,9 @@ public class Avion{
 
     public void setVuelos(ArrayList<Vuelo> vuelos) {
         this.vuelos = vuelos;
+    }
+    public void setVuelo(Vuelo v){
+        this.vuelos.add(v);
     }
     
     public Avion obtener(){

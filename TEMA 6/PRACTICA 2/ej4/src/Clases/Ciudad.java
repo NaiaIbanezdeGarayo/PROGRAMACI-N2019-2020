@@ -15,11 +15,16 @@ public class Ciudad {
     private String codCiudad;
     private String nombre;
     
-    private ArrayList <Vuelo> vuelos;
+    private ArrayList <Vuelo> vuelos = new ArrayList<>();
 
     public Ciudad() {
     }
 
+    public Ciudad(String codCiudad, String nombre) {
+        this.codCiudad = codCiudad;
+        this.nombre = nombre;
+    }
+    
     public Ciudad(String codCiudad, String nombre, ArrayList<Vuelo> vuelos) {
         this.codCiudad = codCiudad;
         this.nombre = nombre;

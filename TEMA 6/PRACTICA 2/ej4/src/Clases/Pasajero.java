@@ -19,11 +19,19 @@ public class Pasajero {
    private int edad;
    
    private Asiento asiento;
-   private ArrayList <Vuelo> vuelos;
+   private ArrayList <Vuelo> vuelos = new ArrayList<>();
 
    public Pasajero() {
    }
 
+    public Pasajero(String cedula, String nombre, String apellido, String sexo, int edad) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.sexo = sexo;
+        this.edad = edad;
+    }
+   
     public Pasajero(String cedula, String nombre, String apellido, String sexo, int edad, Asiento asiento, ArrayList<Vuelo> vuelos) {
         this.cedula = cedula;
         this.nombre = nombre;
