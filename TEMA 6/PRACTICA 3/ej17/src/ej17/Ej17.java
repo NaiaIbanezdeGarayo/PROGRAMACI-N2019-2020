@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ej3;
+package ej17;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,21 +13,20 @@ import javax.swing.JOptionPane;
  *
  * @author 1gdaw06
  */
-public class Ej3 {
+public class Ej17 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         String nro = JOptionPane.showInputDialog("Introduce un número entero negativo");
-        Pattern pat = Pattern.compile("^-[0-9]+$");
-        Matcher mat = pat.matcher(nro);
+        String nombre = JOptionPane.showInputDialog("Introduce tu nombre");
+        Pattern pat = Pattern.compile("^(([A-z]{2,})\\s)+$");
+        Matcher mat = pat.matcher(nombre);
         if (mat.matches()) {
-            JOptionPane.showMessageDialog(null, "El dato es correcto");
+            JOptionPane.showMessageDialog(null, "nombre válido");
         }else
-            JOptionPane.showMessageDialog(null, "El dato es incorrecto");
-        
+            JOptionPane.showMessageDialog(null, "nombre no válido");
     }
     
 }

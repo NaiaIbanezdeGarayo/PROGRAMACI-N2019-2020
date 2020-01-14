@@ -21,7 +21,7 @@ public class Ej4 {
     public static void main(String[] args) {
         // TODO code application logic here
         String cadena = JOptionPane.showInputDialog("Introduce un dni");
-        Pattern pat = Pattern.compile("[0-9]{8}[ABCDEFGHJKLMNPQRSTWXYZ]");
+        Pattern pat = Pattern.compile("^[0-9]{8}[ABCDEFGHJKLMNPQRSTWXYZ]$");
         Matcher mat = pat.matcher(cadena);
         if (mat.matches()) {
             JOptionPane.showMessageDialog(null, "El dni introducido es correcto");

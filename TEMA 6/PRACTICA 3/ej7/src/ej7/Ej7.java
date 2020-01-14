@@ -21,7 +21,7 @@ public class Ej7 {
     public static void main(String[] args) {
         // TODO code application logic here
         String nBinario = JOptionPane.showInputDialog("Introduce una matricula");
-        Pattern pat = Pattern.compile("(?:[01]{8})+");
+        Pattern pat = Pattern.compile("^[01]{1,}$");
         Matcher mat = pat.matcher(nBinario);
         if (mat.matches()) {
             JOptionPane.showMessageDialog(null, "numero válido");
