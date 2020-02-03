@@ -53,5 +53,13 @@ public class Obra {
     public void setArtistas(ArrayList<Artista> artistas) {
         this.artistas = artistas;
     }
+    public void setArtista (Artista a){
+        artistas.add(a);
+    }
+
+    @Override
+    public String toString() {
+        return "Obra{" + "titulo=" + titulo + ", anoEdicion=" + anoEdicion + ", artistas=" + artistas + '}';
+    }
     
 }

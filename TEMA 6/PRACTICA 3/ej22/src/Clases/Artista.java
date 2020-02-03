@@ -51,6 +51,9 @@ public class Artista {
     public ArrayList<Obra> getObras() {
         return obras;
     }
+    public void setObra (Obra o){
+        obras.add(o);
+    }
 
     public void setObras(ArrayList<Obra> obras) {
         this.obras = obras;
