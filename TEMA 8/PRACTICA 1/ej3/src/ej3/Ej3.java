@@ -6,6 +6,7 @@
 package ej3;
 
 import Modelo.Producto;
+import Modelo.tipoProductos;
 import Vista.compraVenta;
 import Vista.vCompras;
 import Vista.vVentas;
@@ -42,10 +43,45 @@ public class Ej3 {
     }
 
     public static void salirVentanaVentas() {
-        
+        vv.dispose();
+        cv.setVisible(true);
     }
 
     public static void salirVentanaCompras() {
+        vc.dispose();
+        cv.setVisible(true);
+    }
+
+    public static void venderProducto(String nombreProducto, int unidades, double importe) {
+        p = new Producto();
+        if (nombreProducto.equalsIgnoreCase("jamon")) {
+          p.setNombre(tipoProductos.JAMON);  
+        }else if (nombreProducto.equalsIgnoreCase("chorizo")) {
+            p.setNombre(tipoProductos.CHORIZO);
+        }
+        else if (nombreProducto.equalsIgnoreCase("queso")) {
+            p.setNombre(tipoProductos.QUESO);
+        }
+        else if (nombreProducto.equalsIgnoreCase("leche")) {
+            p.setNombre(tipoProductos.LECHE);         
+        }
+        else if (nombreProducto.equalsIgnoreCase("galletas")) {
+            p.setNombre(tipoProductos.GALLETAS);    
+        }
+        else if (nombreProducto.equalsIgnoreCase("cereales")) {
+            p.setNombre(tipoProductos.CEREALES);    
+        }
+        else if (nombreProducto.equalsIgnoreCase("filetes")) {
+            p.setNombre(tipoProductos.FILETES);    
+        }
+        
+        p.getnUnidades();
+    }
+            
+        
+    
+
+    public static void comprarProductos(String text, String text0, String text1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

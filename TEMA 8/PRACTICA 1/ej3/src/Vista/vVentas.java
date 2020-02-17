@@ -18,6 +18,7 @@ public class vVentas extends javax.swing.JFrame {
      */
     public vVentas() {
         initComponents();
+        lError.setVisible(false);
     }
 
     /**
@@ -38,6 +39,7 @@ public class vVentas extends javax.swing.JFrame {
         tfProducto = new javax.swing.JTextField();
         tfUnidades = new javax.swing.JTextField();
         tfImporte = new javax.swing.JTextField();
+        lError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +53,11 @@ public class vVentas extends javax.swing.JFrame {
         jLabel4.setText("Importe");
 
         bAceptar.setText("Aceptar");
+        bAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAceptarActionPerformed(evt);
+            }
+        });
 
         bSalir.setText("Cancelar");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +65,10 @@ public class vVentas extends javax.swing.JFrame {
                 bSalirActionPerformed(evt);
             }
         });
+
+        lError.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        lError.setForeground(new java.awt.Color(255, 0, 51));
+        lError.setText("*No puede haber ningún campo vacío");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,24 +79,24 @@ public class vVentas extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(99, 99, 99))
             .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addComponent(bAceptar)
+                        .addGap(51, 51, 51)
+                        .addComponent(bSalir))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(tfUnidades)
-                            .addComponent(tfImporte)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(bAceptar)
-                        .addGap(51, 51, 51)
-                        .addComponent(bSalir)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                            .addComponent(tfUnidades, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(tfImporte)
+                            .addComponent(tfProducto)))
+                    .addComponent(lError))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +115,13 @@ public class vVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tfImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lError)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bSalir))
-                .addGap(24, 24, 24))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,6 +131,16 @@ public class vVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ej3.salirVentanaVentas();
     }//GEN-LAST:event_bSalirActionPerformed
+
+    private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
+        // TODO add your handling code here:
+        if (tfImporte.getText().isEmpty() && tfProducto.getText().isEmpty() && tfUnidades.getText().isEmpty()) {
+            lError.setVisible(true);
+        }else{
+            Ej3.venderProducto(tfImporte.getText(),Integer.parseInt(tfProducto.getText()), Double.parseDouble(tfUnidades.getText()));
+            vaciarCampo();
+        }
+    }//GEN-LAST:event_bAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,8 +185,15 @@ public class vVentas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lError;
     private javax.swing.JTextField tfImporte;
     private javax.swing.JTextField tfProducto;
     private javax.swing.JTextField tfUnidades;
     // End of variables declaration//GEN-END:variables
+
+    private void vaciarCampo() {
+        tfImporte.setText("");
+        tfProducto.setText("");
+        tfUnidades.setText("");
+    }
 }
