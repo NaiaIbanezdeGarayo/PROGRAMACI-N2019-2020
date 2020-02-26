@@ -11,6 +11,7 @@ import Vista.compraVenta;
 import Vista.vCompras;
 import Vista.vVentas;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,9 +57,18 @@ public class Ej3 {
     }
 
     public static void venderProducto(String nombreProducto, int unidades, double importe) {
-        for (int i = 0; i < listaproductos.size(); i++) {
-            if (listaproductos.contains(nombreProducto)) {
-                
+         for(Producto p: listaproductos) {
+            int UnidadesTotales = Integer.parseInt(p.getnUnidades());
+            int UnidadesRestantes = unidades;
+            if(p.getNombre().equals(nombreProducto)){
+                if(UnidadesRestantes < UnidadesTotales){
+                    UnidadesTotales = UnidadesTotales - unidades;
+                    p.setnUnidades(Integer.toS);
+                    JOptionPane.showMessageDialog(null, "Producto vendido satisfactoriamente");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "No quedan tantas unidades");
+                }
             }
         }
     }
