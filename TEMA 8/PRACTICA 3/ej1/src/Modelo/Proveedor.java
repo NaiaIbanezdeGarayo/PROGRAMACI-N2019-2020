@@ -10,5 +10,26 @@ package Modelo;
  * @author 1gdaw06
  */
 public class Proveedor extends Persona{
-    private ArrayList <Producto>
+    private Producto p;
+
+    public Proveedor() {
+    }
+
+    public Proveedor(Producto p) {
+        this.p = p;
+    }
+
+    public Proveedor(Producto p, String nombre) {
+        super(nombre);
+        this.p = p;
+    }
+
+    public Producto getP() {
+        return p;
+    }
+
+    public void setP(Producto p) {
+        this.p = p;
+    }
+    
 }

@@ -5,6 +5,11 @@
  */
 package Vista;
 
+import Controlador.Ej1;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author 1gdaw06
@@ -16,6 +21,16 @@ public class Almacen extends javax.swing.JFrame {
      */
     public Almacen() {
         initComponents();
+        
+        
+        tfCliente.setEnabled(false);
+        cbPorVolumen.setEnabled(false);
+        cbPorProntoPago.setEnabled(false);
+        cbProveedores.setEnabled(false);
+        tfPrecioCompra.setEnabled(false);
+        tfImporte.setEnabled(false);
+        error.setVisible(false);
+        errorUnidades.setVisible(false);
     }
 
     /**
@@ -55,6 +70,8 @@ public class Almacen extends javax.swing.JFrame {
         tfImporte = new javax.swing.JTextField();
         bAceptar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
+        error = new javax.swing.JLabel();
+        errorUnidades = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,13 +82,45 @@ public class Almacen extends javax.swing.JFrame {
 
         jLabel3.setText("Unidades");
 
+        tfnombreproducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfnombreproductoFocusLost(evt);
+            }
+        });
+        tfnombreproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfnombreproductoActionPerformed(evt);
+            }
+        });
+
+        tfunidades.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfunidadesFocusLost(evt);
+            }
+        });
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Operación sobre la compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 102, 255))); // NOI18N
 
         bgOperacionCompraVenta.add(rbCompra);
         rbCompra.setText("Compra");
+        rbCompra.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbCompraStateChanged(evt);
+            }
+        });
+        rbCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCompraActionPerformed(evt);
+            }
+        });
 
         bgOperacionCompraVenta.add(rbVenta);
         rbVenta.setText("Venta");
+        rbVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbVentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,6 +147,11 @@ public class Almacen extends javax.swing.JFrame {
 
         jLabel4.setText("Precio");
 
+        tfPrecioCompra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPrecioCompraFocusLost(evt);
+            }
+        });
         tfPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPrecioCompraActionPerformed(evt);
@@ -107,6 +161,12 @@ public class Almacen extends javax.swing.JFrame {
         jLabel5.setText("Proveedor");
 
         tfImporteCompra.setEnabled(false);
+
+        cbProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProveedoresActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Importe de la compra");
 
@@ -186,6 +246,12 @@ public class Almacen extends javax.swing.JFrame {
 
         jLabel9.setText("Importe de la venta:");
 
+        tfImporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfImporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -234,36 +300,52 @@ public class Almacen extends javax.swing.JFrame {
 
         bAceptar.setText("Aceptar");
         bAceptar.setEnabled(false);
+        bAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAceptarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
+
+        error.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        error.setForeground(new java.awt.Color(255, 102, 102));
+        error.setText("*EL NOMBRE DEL PRODUCTO NO SE HA ENCONTRADO*");
+
+        errorUnidades.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        errorUnidades.setForeground(new java.awt.Color(255, 102, 102));
+        errorUnidades.setText("*NO HAY SUFICIENTES UNIDADES DE ESTE PRODUCTO*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(40, 40, 40)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(error)
+                                .addComponent(tfunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(errorUnidades))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(tfnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfunidades, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addGap(94, 94, 94)
                         .addComponent(bAceptar)
                         .addGap(96, 96, 96)
-                        .addComponent(bCancelar)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(bCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(tfnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,10 +357,14 @@ public class Almacen extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(tfnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfunidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(10, 10, 10)
+                .addComponent(errorUnidades)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,7 +374,7 @@ public class Almacen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bCancelar))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -297,6 +383,109 @@ public class Almacen extends javax.swing.JFrame {
     private void tfPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecioCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPrecioCompraActionPerformed
+
+    private void rbCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCompraActionPerformed
+        // TODO add your handling code here:
+        cbProveedores.setEnabled(true);
+        tfPrecioCompra.setEnabled(true);
+        tfCliente.setEnabled(false);
+        cbPorVolumen.setEnabled(false);
+        cbPorProntoPago.setEnabled(false);
+        tfImporte.setEnabled(false);
+        bAceptar.setEnabled(false);
+    }//GEN-LAST:event_rbCompraActionPerformed
+
+    private void rbVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbVentaActionPerformed
+        // TODO add your handling code here:
+        tfCliente.setEnabled(true);
+        cbPorVolumen.setEnabled(true);
+        cbPorProntoPago.setEnabled(true);
+        tfImporte.setEnabled(true);
+        cbProveedores.setEnabled(false);
+        tfPrecioCompra.setEnabled(false);
+        bAceptar.setEnabled(false);
+    }//GEN-LAST:event_rbVentaActionPerformed
+
+    private void rbCompraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbCompraStateChanged
+        
+        
+    }//GEN-LAST:event_rbCompraStateChanged
+
+    private void tfnombreproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfnombreproductoActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_tfnombreproductoActionPerformed
+
+    private void tfnombreproductoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfnombreproductoFocusLost
+        // TODO add your handling code here:
+        if (tfnombreproducto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo del nombre del producto no puede estar vacío");
+            cbProveedores.setEnabled(false);
+            tfPrecioCompra.setEnabled(false);
+            tfCliente.setEnabled(false);
+            cbPorVolumen.setEnabled(false);
+            cbPorProntoPago.setEnabled(false);
+            tfImporte.setEnabled(false);
+        }else{
+            if (Ej1.comprobarProducto(tfnombreproducto.getText())) {
+                error.setVisible(false);
+            }else
+                error.setVisible(true);
+        }
+         
+           
+        
+    }//GEN-LAST:event_tfnombreproductoFocusLost
+
+    private void tfunidadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfunidadesFocusLost
+        // TODO add your handling code here:
+        if (tfunidades.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo de las unidades no puede estar vacío");
+            cbProveedores.setEnabled(false);
+            tfPrecioCompra.setEnabled(false);
+            tfCliente.setEnabled(false);
+            cbPorVolumen.setEnabled(false);
+            cbPorProntoPago.setEnabled(false);
+            tfImporte.setEnabled(false);
+        }else{
+            if (Ej1.comprobarUnidades(tfunidades.getText())) {
+                errorUnidades.setVisible(false);
+            }else
+                errorUnidades.setVisible(true);
+        }
+        Ej1.rellenarComboBox(tfunidades.getText(),cbProveedores);
+    }//GEN-LAST:event_tfunidadesFocusLost
+
+    private void tfPrecioCompraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPrecioCompraFocusLost
+        // TODO add your handling code here:
+        double media = Ej1.importeCompra(tfPrecioCompra.getText(),tfunidades.getText());
+        tfImporteCompra.setText(String.valueOf(media));
+    }//GEN-LAST:event_tfPrecioCompraFocusLost
+
+    private void cbProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProveedoresActionPerformed
+        // TODO add your handling code here:
+        if (!tfnombreproducto.getText().isEmpty() && !tfunidades.getText().isEmpty() && rbCompra.isSelected() && !tfPrecioCompra.getText().isEmpty()) {
+            bAceptar.setEnabled(true);
+        }
+            
+        
+    }//GEN-LAST:event_cbProveedoresActionPerformed
+
+    private void tfImporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfImporteActionPerformed
+        // TODO add your handling code here:
+        
+        if (!tfnombreproducto.getText().isEmpty() && !tfunidades.getText().isEmpty() && rbVenta.isSelected() && !tfCliente.getText().isEmpty() && !tfImporte.getText().isEmpty()) {
+            bAceptar.setEnabled(true);
+        }
+    }//GEN-LAST:event_tfImporteActionPerformed
+
+    private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_bAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,6 +529,8 @@ public class Almacen extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbPorProntoPago;
     private javax.swing.JCheckBox cbPorVolumen;
     private javax.swing.JComboBox<String> cbProveedores;
+    private javax.swing.JLabel error;
+    private javax.swing.JLabel errorUnidades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -363,4 +554,6 @@ public class Almacen extends javax.swing.JFrame {
     private javax.swing.JTextField tfnombreproducto;
     private javax.swing.JTextField tfunidades;
     // End of variables declaration//GEN-END:variables
+
+    
 }

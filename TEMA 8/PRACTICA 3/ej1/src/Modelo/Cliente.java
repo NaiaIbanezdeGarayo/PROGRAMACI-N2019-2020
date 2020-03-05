@@ -5,10 +5,35 @@
  */
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 1gdaw06
  */
-public class Cliente {
+public class Cliente extends Persona{
+    private ArrayList <Producto> listaproductos;
+
+    public Cliente() {
+    }
+
+    public Cliente(ArrayList<Producto> listaproductos) {
+        this.listaproductos = listaproductos;
+    }
+
+    public Cliente(ArrayList<Producto> listaproductos, String nombre) {
+        super(nombre);
+        this.listaproductos = listaproductos;
+    }
+
+    public ArrayList<Producto> getListaproductos() {
+        return listaproductos;
+    }
+
+    public void setListaproductos(ArrayList<Producto> listaproductos) {
+        this.listaproductos = listaproductos;
+    }
+
+    
     
 }
