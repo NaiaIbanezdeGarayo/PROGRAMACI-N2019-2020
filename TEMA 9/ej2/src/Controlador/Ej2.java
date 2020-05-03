@@ -11,6 +11,8 @@ import Modelo.TAcontecimientos;
 import Vista.Acontecimientos;
 import Vista.PaginaPrincipal;
 import com.oracle.xmlns.internal.webservices.jaxws_databinding.JavaWsdlMappingType;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,6 +56,28 @@ public class Ej2 {
         va.dispose();
         vpp = new PaginaPrincipal();
         vpp.setVisible(true);
+    }
+
+    public static void baja() throws Exception {
+        String nAcontecimiento = JOptionPane.showInputDialog("Introduce el nombre del evento que quieras borrar");
+        ta.bajaAcontecimientos(nAcontecimiento);
+    }
+
+    public static void abrirVentanaDatos() throws SQLException {
+        String nEvento = JOptionPane.showInputDialog("Introduce el nombre del evento para modificar");
+        a = ta.obtenerDatosUnaFila(nEvento);
+        va.setVisible(true);
+        va.llenarDatosEvento(a.getNombre(),a.getLugar(),a.getFecha(),a.getHoraInicio(),a.getHoraFinal(),a.getAforo());
+    }
+
+    public static void modificar(String nombre, String lugar, String fecha, String horaI, String horaF, String aforo) throws Exception {
+        a.setNombre(nombre);
+        a.setLugar(lugar);
+        a.setFecha(fecha);
+        a.setHoraInicio(horaI);
+        a.setHoraFinal(horaF);
+        a.setAforo(Integer.parseInt(aforo));
+        ta.actualizar(a);
     }
     
 }

@@ -7,6 +7,8 @@ package Modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -34,5 +36,56 @@ public class TAcontecimientos {
             throw new Exception("El número de filas actualizadas no es uno");
         }
         
+    }
+
+    public void bajaAcontecimientos(String nAcontecimiento) throws SQLException, Exception {
+        String plantilla = "DELETE FROM acontecimientos WHERE nombre=?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, nAcontecimiento);
+        
+        int n = ps.executeUpdate();
+        ps.close();
+        if (n != 1)
+            throw new Exception("El número de filas actualizadas no es uno");
+        
+    }
+
+    
+
+    public Acontecimiento obtenerDatosUnaFila(String nEvento) throws SQLException {
+        String plantilla = "SELECT * FROM acontecimientos WHERE nombre = ?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, nEvento);
+        
+        ResultSet resultado = ps.executeQuery();
+        if (resultado.next())
+        {
+           Acontecimiento a = new Acontecimiento();
+           a.setNombre(resultado.getString("nombre"));
+           a.setLugar(resultado.getString("lugar"));
+           a.setFecha(resultado.getString("fecha"));
+           a.setHoraInicio(resultado.getString("horaInicio"));
+           a.setHoraFinal(resultado.getString("horaFinal"));
+           a.setAforo(Integer.parseInt(resultado.getString("aforo")));
+           return a;
+       }
+       else
+           return null;
+    }
+
+    public void actualizar(Acontecimiento a) throws SQLException, Exception {
+        String plantilla = "UPDATE acontecimientos SET nombre =?, lugar=?, fecha =?, horaInicio =?, horaFinal =?, aforo =?  WHERE nombre =?";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, a.getNombre());
+        ps.setString(2, a.getLugar());
+        ps.setString(3, a.getFecha());
+        ps.setString(4, a.getHoraInicio());
+        ps.setString(5, a.getHoraFinal());
+        ps.setInt(6, a.getAforo());
+      
+        int n = ps.executeUpdate();
+        ps.close();
+        if (n != 1)
+            throw new Exception("El número de filas actualizadas no es uno");
     }
 }

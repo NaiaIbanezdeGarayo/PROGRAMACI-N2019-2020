@@ -20,6 +20,7 @@ public class Acontecimientos extends javax.swing.JFrame {
      */
     public Acontecimientos() {
         initComponents();
+        bmodificacion.setVisible(false);
     }
 
     /**
@@ -46,6 +47,7 @@ public class Acontecimientos extends javax.swing.JFrame {
         tfHoraFinal = new javax.swing.JTextField();
         tfAforo = new javax.swing.JTextField();
         cbLugar = new javax.swing.JComboBox<>();
+        bmodificacion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +81,13 @@ public class Acontecimientos extends javax.swing.JFrame {
         });
 
         cbLugar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artium", "Buesa Arena", "Iradier Arena", "Mendizorrotza", "Teatro Principal", " " }));
+
+        bmodificacion.setText("Guardar modificación");
+        bmodificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmodificacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,7 +123,9 @@ public class Acontecimientos extends javax.swing.JFrame {
                                 .addComponent(cbLugar, javax.swing.GroupLayout.Alignment.LEADING, 0, 201, Short.MAX_VALUE)
                                 .addComponent(tfnombre, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tfHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfHoraFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bmodificacion))
                 .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
@@ -147,7 +158,8 @@ public class Acontecimientos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
-                    .addComponent(bSalir))
+                    .addComponent(bSalir)
+                    .addComponent(bmodificacion))
                 .addGap(30, 30, 30))
         );
 
@@ -167,6 +179,15 @@ public class Acontecimientos extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ej2.cerrarAcontecimientos();
     }//GEN-LAST:event_bSalirActionPerformed
+
+    private void bmodificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmodificacionActionPerformed
+        try {
+            // TODO add your handling code here:
+            Ej2.modificar(tfnombre.getText(),cbLugar.getSelectedItem().toString(),tfFecha.getText(),tfHoraInicio.getText(),tfHoraFinal.getText(),tfAforo.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(Acontecimientos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bmodificacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +215,9 @@ public class Acontecimientos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Acontecimientos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -206,6 +230,7 @@ public class Acontecimientos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;
     private javax.swing.JButton bSalir;
+    private javax.swing.JButton bmodificacion;
     private javax.swing.JComboBox<String> cbLugar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -220,4 +245,15 @@ public class Acontecimientos extends javax.swing.JFrame {
     private javax.swing.JTextField tfHoraInicio;
     private javax.swing.JTextField tfnombre;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarDatosEvento(String nombre, String lugar, String fecha, String horaInicio, String horaFinal, int aforo) {
+        tfnombre.setText(nombre);
+        cbLugar.setSelectedItem(lugar);
+        tfFecha.setText(fecha);
+        tfHoraInicio.setText(horaInicio);
+        tfHoraFinal.setText(horaFinal);
+        tfAforo.setText(String.valueOf(aforo));
+        bmodificacion.setVisible(true);
+        bAceptar.setVisible(false);
+    }
 }

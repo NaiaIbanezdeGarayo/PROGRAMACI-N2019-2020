@@ -6,6 +6,9 @@
 package Vista;
 
 import Controlador.Ej2;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,10 +32,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mAcontecimientos = new javax.swing.JMenu();
+        mAlta = new javax.swing.JMenuItem();
+        mBaja = new javax.swing.JMenuItem();
+        mModificar = new javax.swing.JMenuItem();
         mSalir = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +59,36 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 mAcontecimientosActionPerformed(evt);
             }
         });
+
+        mAlta.setText("Alta");
+        mAlta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mAltaMouseClicked(evt);
+            }
+        });
+        mAcontecimientos.add(mAlta);
+
+        mBaja.setText("Baja");
+        mBaja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mBajaMouseClicked(evt);
+            }
+        });
+        mBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mBajaActionPerformed(evt);
+            }
+        });
+        mAcontecimientos.add(mBaja);
+
+        mModificar.setText("Modificar");
+        mModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mModificarMouseClicked(evt);
+            }
+        });
+        mAcontecimientos.add(mModificar);
+
         jMenuBar1.add(mAcontecimientos);
 
         mSalir.setText("Salir");
@@ -89,13 +128,41 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     private void mAcontecimientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAcontecimientosMouseClicked
         // TODO add your handling code here:
-        Ej2.ventanaAcontecimientos();
+        
     }//GEN-LAST:event_mAcontecimientosMouseClicked
 
     private void mSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mSalirMouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mSalirMouseClicked
+
+    private void mBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mBajaActionPerformed
+
+    private void mAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAltaMouseClicked
+        // TODO add your handling code here:
+        Ej2.ventanaAcontecimientos();
+    }//GEN-LAST:event_mAltaMouseClicked
+
+    private void mBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mBajaMouseClicked
+        try {
+            // TODO add your handling code here:
+            Ej2.baja();
+        } catch (Exception ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_mBajaMouseClicked
+
+    private void mModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mModificarMouseClicked
+        try {
+            // TODO add your handling code here:
+            Ej2.abrirVentanaDatos();
+        } catch (SQLException ex) {
+            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_mModificarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -135,7 +202,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mAcontecimientos;
+    private javax.swing.JMenuItem mAlta;
+    private javax.swing.JMenuItem mBaja;
+    private javax.swing.JMenuItem mModificar;
     private javax.swing.JMenu mSalir;
     // End of variables declaration//GEN-END:variables
 }
