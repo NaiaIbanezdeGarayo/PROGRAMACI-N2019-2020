@@ -167,12 +167,10 @@ public class Acontecimientos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
-        try {
+        
             // TODO add your handling code here:
-            Ej2.añadirAcontecimientos(tfnombre.getText(),cbLugar.getSelectedItem().toString(),tfFecha.getText(),tfHoraInicio.getText(), tfHoraFinal.getText(), Integer.parseInt(tfAforo.getText()));
-        } catch (Exception ex) {
-            Logger.getLogger(Acontecimientos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Ej2.añadirAcontecimiento(tfnombre.getText(),String.valueOf(cbLugar.getSelectedItem()),tfFecha.getText(),tfHoraInicio.getText(), tfHoraFinal.getText(), Integer.parseInt(tfAforo.getText()));
+        
     }//GEN-LAST:event_bAceptarActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
@@ -248,6 +246,7 @@ public class Acontecimientos extends javax.swing.JFrame {
 
     public void llenarDatosEvento(String nombre, String lugar, String fecha, String horaInicio, String horaFinal, int aforo) {
         tfnombre.setText(nombre);
+        tfnombre.setEditable(false);
         cbLugar.setSelectedItem(lugar);
         tfFecha.setText(fecha);
         tfHoraInicio.setText(horaInicio);

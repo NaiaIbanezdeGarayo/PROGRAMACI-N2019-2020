@@ -7,6 +7,7 @@ package Modelo;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,8 +20,10 @@ public class Acontecimiento {
     private String horaInicio;
     private String horaFinal;
     private int aforo;
+    private ArrayList<Persona> listaPersonas;
 
     public Acontecimiento() {
+        listaPersonas = new ArrayList();
     }
 
     public Acontecimiento(String nombre, String lugar, String fecha, String horaInicio, String horaFinal, int aforo) {
@@ -30,6 +33,7 @@ public class Acontecimiento {
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
         this.aforo = aforo;
+        listaPersonas = new ArrayList();
     }
 
     public String getNombre() {
@@ -79,5 +83,23 @@ public class Acontecimiento {
     public void setAforo(int aforo) {
         this.aforo = aforo;
     }
+
+    public ArrayList<Persona> getListaPersonas() {
+        return listaPersonas;
+    }
+
+    public void setListaPersonas(Persona p) {
+        this.listaPersonas.add(p);
+    }
+
+    
+    @Override
+    public String toString() {
+        return nombre + " " + lugar + " " + fecha + " " + horaInicio + " " + horaFinal + " " + aforo + " " + listaPersonas + " ";
+    }
+    
+   
+
+   
     
 }

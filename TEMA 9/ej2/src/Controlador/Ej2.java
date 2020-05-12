@@ -42,14 +42,19 @@ public class Ej2 {
     }
 
     public static void ventanaAcontecimientos() {
-        vpp.dispose();
+        vpp.setVisible(false);
         va = new Acontecimientos();
         va.setVisible(true);
     }
 
-    public static void añadirAcontecimientos(String nombre, String lugar, String fecha, String horainicio, String horafinal, int aforo) throws Exception {
-        a = new Acontecimiento(nombre,lugar,fecha,horainicio,horafinal,aforo);
-        ta.añadirAcontecimientos(a);
+    public static void añadirAcontecimiento(String nombre, String lugar, String fecha, String horainicio, String horafinal, int aforo)  {
+        try{
+            a = new Acontecimiento(nombre,lugar,fecha,horainicio,horafinal,aforo);
+            ta.añadirAcontecimientos(a);
+        }
+        catch(Exception e){
+            System.out.println("No se han podido añadir los acontecimientos");
+        }
     }
 
     public static void cerrarAcontecimientos() {
@@ -66,11 +71,13 @@ public class Ej2 {
     public static void abrirVentanaDatos() throws SQLException {
         String nEvento = JOptionPane.showInputDialog("Introduce el nombre del evento para modificar");
         a = ta.obtenerDatosUnaFila(nEvento);
+        va = new Acontecimientos();
         va.setVisible(true);
         va.llenarDatosEvento(a.getNombre(),a.getLugar(),a.getFecha(),a.getHoraInicio(),a.getHoraFinal(),a.getAforo());
     }
 
     public static void modificar(String nombre, String lugar, String fecha, String horaI, String horaF, String aforo) throws Exception {
+        
         a.setNombre(nombre);
         a.setLugar(lugar);
         a.setFecha(fecha);

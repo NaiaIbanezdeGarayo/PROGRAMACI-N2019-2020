@@ -66,6 +66,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 mAltaMouseClicked(evt);
             }
         });
+        mAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAltaActionPerformed(evt);
+            }
+        });
         mAcontecimientos.add(mAlta);
 
         mBaja.setText("Baja");
@@ -85,6 +90,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         mModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mModificarMouseClicked(evt);
+            }
+        });
+        mModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mModificarActionPerformed(evt);
             }
         });
         mAcontecimientos.add(mModificar);
@@ -124,6 +134,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void mAcontecimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAcontecimientosActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_mAcontecimientosActionPerformed
 
     private void mAcontecimientosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAcontecimientosMouseClicked
@@ -138,31 +149,42 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     private void mBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBajaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mBajaActionPerformed
-
-    private void mAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAltaMouseClicked
-        // TODO add your handling code here:
-        Ej2.ventanaAcontecimientos();
-    }//GEN-LAST:event_mAltaMouseClicked
-
-    private void mBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mBajaMouseClicked
-        try {
+         try {
             // TODO add your handling code here:
             Ej2.baja();
         } catch (Exception ex) {
             Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_mBajaActionPerformed
+
+    private void mAltaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAltaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_mAltaMouseClicked
+
+    private void mBajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mBajaMouseClicked
+       
     }//GEN-LAST:event_mBajaMouseClicked
 
     private void mModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mModificarMouseClicked
+        
+        
+    }//GEN-LAST:event_mModificarMouseClicked
+
+    private void mAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAltaActionPerformed
+        // TODO add your handling code here:
+        Ej2.ventanaAcontecimientos();
+    }//GEN-LAST:event_mAltaActionPerformed
+
+    private void mModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mModificarActionPerformed
+        // TODO add your handling code here:
         try {
             // TODO add your handling code here:
             Ej2.abrirVentanaDatos();
         } catch (SQLException ex) {
             Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_mModificarMouseClicked
+    }//GEN-LAST:event_mModificarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,10 +5,8 @@
  */
 package Modelo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import java.sql.*;
 
 /**
  *
@@ -35,7 +33,6 @@ public class TAcontecimientos {
         if (n != 1) {
             throw new Exception("El número de filas actualizadas no es uno");
         }
-        
     }
 
     public void bajaAcontecimientos(String nAcontecimiento) throws SQLException, Exception {
@@ -74,14 +71,15 @@ public class TAcontecimientos {
     }
 
     public void actualizar(Acontecimiento a) throws SQLException, Exception {
-        String plantilla = "UPDATE acontecimientos SET nombre =?, lugar=?, fecha =?, horaInicio =?, horaFinal =?, aforo =?  WHERE nombre =?";
+        String plantilla = "UPDATE acontecimientos SET  lugar=?, fecha =?, horaInicio =?, horaFinal =?, aforo =?  WHERE nombre =?";
         PreparedStatement ps = con.prepareStatement(plantilla);
-        ps.setString(1, a.getNombre());
-        ps.setString(2, a.getLugar());
-        ps.setString(3, a.getFecha());
-        ps.setString(4, a.getHoraInicio());
-        ps.setString(5, a.getHoraFinal());
-        ps.setInt(6, a.getAforo());
+        
+        ps.setString(1, a.getLugar());
+        ps.setString(2, a.getFecha());
+        ps.setString(3, a.getHoraInicio());
+        ps.setString(4, a.getHoraFinal());
+        ps.setInt(5, a.getAforo());
+        ps.setString(6, a.getNombre());
       
         int n = ps.executeUpdate();
         ps.close();
