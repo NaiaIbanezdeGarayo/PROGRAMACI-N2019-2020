@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Controlador.Ej2;
+
+
 /**
  *
  * @author Naia
@@ -14,8 +17,16 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
     /**
      * Creates new form VistaAcontecimientoPersona
      */
-    public VistaAcontecimientoPersona() {
+    public VistaAcontecimientoPersona(){
         initComponents();
+        Ej2.comprobarAforo();
+        Ej2.rellenarComboBox(cbNombre);
+        tfHora.setEditable(false);
+        tfFecha.setEditable(false);
+        tfNombre.setEditable(false);
+        tfPrimerApellido.setEditable(false);
+        tfSegundaApellido.setEditable(false);
+        tfTelefono.setEditable(false);
     }
 
     /**
@@ -35,6 +46,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         tfFecha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         tfHora = new javax.swing.JTextField();
+        bComprobar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         tfDni = new javax.swing.JTextField();
@@ -46,6 +58,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         tfSegundaApellido = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tfTelefono = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         bAceptar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
 
@@ -58,6 +71,12 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
 
+        cbNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cbNombreFocusLost(evt);
+            }
+        });
+
         jLabel3.setText("Fecha");
 
         tfFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +86,13 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Hora");
+
+        bComprobar.setText("Comprobar nombre evento");
+        bComprobar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComprobarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,14 +105,18 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(tfFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(tfHora, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addComponent(tfHora, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(158, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bComprobar)
+                        .addGap(36, 36, 36))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +124,8 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bComprobar))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -108,6 +139,12 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
 
         jLabel5.setText("Dni");
 
+        tfDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfDniKeyReleased(evt);
+            }
+        });
+
         jLabel6.setText("Nombre");
 
         jLabel7.setText("Primer apellido");
@@ -115,6 +152,13 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         jLabel8.setText("Segunda apellido");
 
         jLabel9.setText("Teléfono");
+
+        jButton1.setText("Comprobar dni");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,17 +178,19 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(18, 18, 18)
-                                .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(tfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -154,7 +200,8 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
@@ -174,8 +221,18 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         );
 
         bAceptar.setText("Aceptar");
+        bAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAceptarActionPerformed(evt);
+            }
+        });
 
         bCancelar.setText("Cancelar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,7 +267,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bCancelar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -219,6 +276,45 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
     private void tfFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfFechaActionPerformed
+
+    private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
+        // TODO add your handling code here:
+        Ej2.volverPaginaPrincipal();
+    }//GEN-LAST:event_bCancelarActionPerformed
+
+    private void cbNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cbNombreFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbNombreFocusLost
+
+    private void bComprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprobarActionPerformed
+        // TODO add your handling code here:
+        Ej2.rellenarDatosAsistencia(cbNombre.getSelectedItem().toString());
+    }//GEN-LAST:event_bComprobarActionPerformed
+
+    private void tfDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDniKeyReleased
+        // TODO add your handling code here:
+        
+       
+            
+        
+
+    }//GEN-LAST:event_tfDniKeyReleased
+
+    private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Ej2.altaPersona(tfDni.getText(),tfNombre.getText(),tfPrimerApellido.getText(),tfSegundaApellido.getText(),tfTelefono.getText());
+            Ej2.añadirAsistencia(tfDni.getText(),cbNombre.getSelectedItem().toString());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+    }//GEN-LAST:event_bAceptarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        consultarDni();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,7 +354,9 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;
     private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bComprobar;
     private javax.swing.JComboBox<String> cbNombre;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,4 +376,38 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
     private javax.swing.JTextField tfSegundaApellido;
     private javax.swing.JTextField tfTelefono;
     // End of variables declaration//GEN-END:variables
+
+    public void llenarDatosAcontecimientos(String fecha, String horaInicio) {
+        tfFecha.setText(fecha);
+        tfHora.setText(horaInicio);
+    }
+
+    private void consultarDni() {
+        
+        try {
+            Boolean encontrado = Ej2.comprobarPersona(tfDni.getText());
+            if (encontrado) {
+                Ej2.obtenerDatosPersona(tfDni.getText());
+            }else
+                obtenerDatos();
+            
+        } catch (Exception e) {
+        }
+    }
+
+    private void obtenerDatos() {
+        tfNombre.setEditable(true);
+        tfPrimerApellido.setEditable(true);
+        tfSegundaApellido.setEditable(true);
+        tfTelefono.setEditable(true);
+    }
+
+    public void rellenarDatosPersona(String nombre, String apellido1, String apellido2, String telefono) {
+        tfNombre.setText(nombre);
+        tfPrimerApellido.setText(apellido1);
+        tfSegundaApellido.setText(apellido2);
+        tfTelefono.setText(telefono);
+    }
+
+    
 }

@@ -33,15 +33,63 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuBar4 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuBar5 = new javax.swing.JMenuBar();
+        jMenu7 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuBar6 = new javax.swing.JMenuBar();
+        jMenu9 = new javax.swing.JMenu();
+        jMenu10 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mAcontecimientos = new javax.swing.JMenu();
         mAlta = new javax.swing.JMenuItem();
         mBaja = new javax.swing.JMenuItem();
         mModificar = new javax.swing.JMenuItem();
+        mListado = new javax.swing.JMenuItem();
+        mPersonas = new javax.swing.JMenu();
+        mAsistir = new javax.swing.JMenuItem();
         mSalir = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("File");
+        jMenuBar3.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar3.add(jMenu4);
+
+        jMenu5.setText("File");
+        jMenuBar4.add(jMenu5);
+
+        jMenu6.setText("Edit");
+        jMenuBar4.add(jMenu6);
+
+        jMenu7.setText("File");
+        jMenuBar5.add(jMenu7);
+
+        jMenu8.setText("Edit");
+        jMenuBar5.add(jMenu8);
+
+        jMenu9.setText("File");
+        jMenuBar6.add(jMenu9);
+
+        jMenu10.setText("Edit");
+        jMenuBar6.add(jMenu10);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,7 +147,42 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
         mAcontecimientos.add(mModificar);
 
+        mListado.setText("Listado de personas");
+        mListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mListadoActionPerformed(evt);
+            }
+        });
+        mAcontecimientos.add(mListado);
+
         jMenuBar1.add(mAcontecimientos);
+
+        mPersonas.setText("Personas");
+        mPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mPersonasMouseClicked(evt);
+            }
+        });
+        mPersonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mPersonasActionPerformed(evt);
+            }
+        });
+
+        mAsistir.setText("Asistir");
+        mAsistir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mAsistirMouseClicked(evt);
+            }
+        });
+        mAsistir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAsistirActionPerformed(evt);
+            }
+        });
+        mPersonas.add(mAsistir);
+
+        jMenuBar1.add(mPersonas);
 
         mSalir.setText("Salir");
         mSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -125,7 +208,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();
@@ -181,10 +264,32 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Ej2.abrirVentanaDatos();
-        } catch (SQLException ex) {
-            Logger.getLogger(PaginaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_mModificarActionPerformed
+
+    private void mPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mPersonasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mPersonasActionPerformed
+
+    private void mPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mPersonasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mPersonasMouseClicked
+
+    private void mAsistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAsistirActionPerformed
+        // TODO add your handling code here:
+        Ej2.abrirVentanaAsistir();
+    }//GEN-LAST:event_mAsistirActionPerformed
+
+    private void mAsistirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mAsistirMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mAsistirMouseClicked
+
+    private void mListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mListadoActionPerformed
+        // TODO add your handling code here:
+        Ej2.abrirListado();
+    }//GEN-LAST:event_mListadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,12 +328,30 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
+    private javax.swing.JMenuBar jMenuBar4;
+    private javax.swing.JMenuBar jMenuBar5;
+    private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu mAcontecimientos;
     private javax.swing.JMenuItem mAlta;
+    private javax.swing.JMenuItem mAsistir;
     private javax.swing.JMenuItem mBaja;
+    private javax.swing.JMenuItem mListado;
     private javax.swing.JMenuItem mModificar;
+    private javax.swing.JMenu mPersonas;
     private javax.swing.JMenu mSalir;
     // End of variables declaration//GEN-END:variables
 }

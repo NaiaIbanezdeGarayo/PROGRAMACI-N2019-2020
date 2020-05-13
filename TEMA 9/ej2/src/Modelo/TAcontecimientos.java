@@ -7,6 +7,7 @@ package Modelo;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,7 +36,7 @@ public class TAcontecimientos {
         }
     }
 
-    public void bajaAcontecimientos(String nAcontecimiento) throws SQLException, Exception {
+    public void bajaAcontecimientos(String nAcontecimiento) throws  Exception {
         String plantilla = "DELETE FROM acontecimientos WHERE nombre=?;";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, nAcontecimiento);
@@ -49,7 +50,7 @@ public class TAcontecimientos {
 
     
 
-    public Acontecimiento obtenerDatosUnaFila(String nEvento) throws SQLException {
+    public Acontecimiento obtenerDatosUnaFila(String nEvento) throws Exception {
         String plantilla = "SELECT * FROM acontecimientos WHERE nombre = ?;";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, nEvento);
@@ -70,7 +71,7 @@ public class TAcontecimientos {
            return null;
     }
 
-    public void actualizar(Acontecimiento a) throws SQLException, Exception {
+    public void actualizar(Acontecimiento a) throws  Exception {
         String plantilla = "UPDATE acontecimientos SET  lugar=?, fecha =?, horaInicio =?, horaFinal =?, aforo =?  WHERE nombre =?";
         PreparedStatement ps = con.prepareStatement(plantilla);
         
@@ -86,4 +87,28 @@ public class TAcontecimientos {
         if (n != 1)
             throw new Exception("El número de filas actualizadas no es uno");
     }
+
+    public ArrayList<Acontecimiento> obtenerEventos(ArrayList<Acontecimiento> listaEventos) throws Exception {
+        String plantilla = "SELECT * FROM acontecimientos;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ResultSet resultado = ps.executeQuery();
+
+       while(resultado.next())
+       {
+                Acontecimiento a = new Acontecimiento();
+
+                a.setNombre(resultado.getString("nombre"));
+                a.setLugar(resultado.getString("lugar"));
+                a.setFecha(resultado.getString("fecha"));
+                a.setHoraInicio(resultado.getString("horaInicio"));
+                a.setHoraFinal(resultado.getString("horaFinal"));
+                a.setAforo(Integer.parseInt(resultado.getString("aforo")));
+
+
+                listaEventos.add(a);
+       }
+       return listaEventos;
+    }
+
+    
 }
