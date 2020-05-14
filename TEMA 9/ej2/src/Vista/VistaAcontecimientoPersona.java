@@ -58,7 +58,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         tfSegundaApellido = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tfTelefono = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        bComprobacionDni = new javax.swing.JButton();
         bAceptar = new javax.swing.JButton();
         bCancelar = new javax.swing.JButton();
 
@@ -153,10 +153,10 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
 
         jLabel9.setText("Teléfono");
 
-        jButton1.setText("Comprobar dni");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bComprobacionDni.setText("Comprobar dni");
+        bComprobacionDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bComprobacionDniActionPerformed(evt);
             }
         });
 
@@ -190,7 +190,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(33, 33, 33)
-                                .addComponent(jButton1)))
+                                .addComponent(bComprobacionDni)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -201,7 +201,7 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(bComprobacionDni))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
@@ -311,10 +311,10 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bAceptarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bComprobacionDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprobacionDniActionPerformed
         // TODO add your handling code here:
         consultarDni();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bComprobacionDniActionPerformed
 
     /**
      * @param args the command line arguments
@@ -354,9 +354,9 @@ public class VistaAcontecimientoPersona extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;
     private javax.swing.JButton bCancelar;
+    private javax.swing.JButton bComprobacionDni;
     private javax.swing.JButton bComprobar;
     private javax.swing.JComboBox<String> cbNombre;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

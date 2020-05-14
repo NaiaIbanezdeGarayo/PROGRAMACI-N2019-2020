@@ -6,6 +6,9 @@
 package Vista;
 
 import Controlador.Ej2;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,7 +37,7 @@ public class ListadoPersonas extends javax.swing.JFrame {
         cbListado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         taListado = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        bSalir = new javax.swing.JButton();
         bSacarListaPersonas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,7 +49,12 @@ public class ListadoPersonas extends javax.swing.JFrame {
         taListado.setRows(5);
         jScrollPane1.setViewportView(taListado);
 
-        jButton1.setText("Salir");
+        bSalir.setText("Salir");
+        bSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalirActionPerformed(evt);
+            }
+        });
 
         bSacarListaPersonas.setText("Sacar lista");
         bSacarListaPersonas.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +69,7 @@ public class ListadoPersonas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(bSalir)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(102, 102, 102)
@@ -88,7 +96,7 @@ public class ListadoPersonas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(bSalir)
                 .addContainerGap())
         );
 
@@ -96,9 +104,18 @@ public class ListadoPersonas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSacarListaPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSacarListaPersonasActionPerformed
-        // TODO add your handling code here:
-        Ej2.obtenerPersonasAforo(cbListado.getSelectedItem().toString());
+        try {
+            // TODO add your handling code here:
+            Ej2.obtenerPersonasAforo(cbListado.getSelectedItem().toString());
+        } catch (Exception ex) {
+            Logger.getLogger(ListadoPersonas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bSacarListaPersonasActionPerformed
+
+    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
+        // TODO add your handling code here:
+        Ej2.salirListadoPersonas();
+    }//GEN-LAST:event_bSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,10 +154,18 @@ public class ListadoPersonas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bSacarListaPersonas;
+    private javax.swing.JButton bSalir;
     private javax.swing.JComboBox<String> cbListado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taListado;
     // End of variables declaration//GEN-END:variables
+
+    public void sacarPorPantallaDni(ArrayList<String> listadoDni) {
+        String datos="";
+        for (int i = 0; i < listadoDni.size(); i++) {
+            datos += listadoDni.get(i) + "\n";
+        }
+        taListado.setText(datos);
+    }
 }

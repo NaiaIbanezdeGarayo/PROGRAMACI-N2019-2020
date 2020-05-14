@@ -46,6 +46,7 @@ public class Ej2 {
             tp = new TPersona(bd.getCon());
             tap = new TAcontecimientosPersona(bd.getCon());
             vpp = new PaginaPrincipal();
+            
             vpp.setVisible(true); 
         } catch (Exception e) {  
             bd.desconectar();
@@ -182,15 +183,16 @@ public class Ej2 {
         lp.setVisible(true);
     }
 
-    public static String obtenerPersonasAforo(String nAcontecimiento) throws Exception{
-        a = tap.obtenerListado(nAcontecimiento);
-        String datos = "";
-        if (a.getListaPersonas().size() == 0)
-               datos = "No hay asistentes";
-           else
-                for(int x = 0; x < a.getListaPersonas().size(); x++)
-                    datos += a.getListaPersonas().get(x).getDni() + " " + a.getListaPersonas().get(x).getNombre()+ "\n";
-           return datos;
+    public static void obtenerPersonasAforo(String nAcontecimiento) throws Exception{
+        ArrayList<String> listadoDni = tap.obtenerListado(nAcontecimiento);
+        lp.sacarPorPantallaDni(listadoDni);
+         
+    }
+
+    public static void salirListadoPersonas() {
+        lp.dispose();
+        vpp = new PaginaPrincipal();
+        vpp.setVisible(true);
     }
     
 }

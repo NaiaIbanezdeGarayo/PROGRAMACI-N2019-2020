@@ -8,6 +8,7 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -33,8 +34,19 @@ public class TAcontecimientosPersona {
         }
     }
 
-    public Acontecimiento obtenerListado(String nAcontecimiento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList obtenerListado(String nAcontecimiento) throws Exception{
+        String plantilla = "SELECT dni FROM acontecimientopersona WHERE nombre = ?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, nAcontecimiento);
+        
+        ResultSet resultado = ps.executeQuery();
+        ArrayList <String> listadoDni = new ArrayList<>();
+        while (resultado.next())
+        {
+           listadoDni.add(resultado.getString("dni"));
+        }
+       
+           return listadoDni;
     }
 
     
