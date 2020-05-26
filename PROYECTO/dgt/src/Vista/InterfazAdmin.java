@@ -39,8 +39,6 @@ public class InterfazAdmin extends javax.swing.JFrame {
         mMultas1 = new javax.swing.JMenu();
         mDesguazar = new javax.swing.JMenuItem();
         mEstadistica = new javax.swing.JMenu();
-        mMultasImpuestas = new javax.swing.JMenuItem();
-        mMultasVehiculo = new javax.swing.JMenuItem();
         bSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,18 +87,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jMenuBar1.add(mMultas1);
 
         mEstadistica.setText("Estadisticas");
-
-        mMultasImpuestas.setText("Multas impuestas");
-        mMultasImpuestas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mMultasImpuestasActionPerformed(evt);
+        mEstadistica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mEstadisticaMouseClicked(evt);
             }
         });
-        mEstadistica.add(mMultasImpuestas);
-
-        mMultasVehiculo.setText("Multas vehículo");
-        mEstadistica.add(mMultasVehiculo);
-
         jMenuBar1.add(mEstadistica);
 
         bSalir.setText("Salir");
@@ -176,10 +167,10 @@ public class InterfazAdmin extends javax.swing.JFrame {
         dgt.abrirVentanaMultas();
     }//GEN-LAST:event_mAsignarMultaActionPerformed
 
-    private void mMultasImpuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mMultasImpuestasActionPerformed
+    private void mEstadisticaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mEstadisticaMouseClicked
         // TODO add your handling code here:
         dgt.abrirVentanaEstadisticaMultasImpuestas();
-    }//GEN-LAST:event_mMultasImpuestasActionPerformed
+    }//GEN-LAST:event_mEstadisticaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -227,7 +218,5 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu mEstadistica;
     private javax.swing.JMenu mMultas;
     private javax.swing.JMenu mMultas1;
-    private javax.swing.JMenuItem mMultasImpuestas;
-    private javax.swing.JMenuItem mMultasVehiculo;
     // End of variables declaration//GEN-END:variables
 }

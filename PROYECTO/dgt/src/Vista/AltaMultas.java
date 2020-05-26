@@ -9,6 +9,8 @@ package Vista;
 import Controlador.dgt;
 import Modelo.Vehiculo;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -24,10 +26,9 @@ public class AltaMultas extends javax.swing.JFrame {
     public AltaMultas() {
         try{
             initComponents();
-            generarId();
             dgt.rellenarCombo(cbTipoMulta);
+            generarId();
             deshabilitarCampos();
-            bAceptar.isEnabled();
            
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -101,7 +102,8 @@ public class AltaMultas extends javax.swing.JFrame {
 
         jLabel7.setText("Modelo");
 
-        cbColores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Negro", "Blanco", "Gris", "Rojo", "Azul", "Amarillo", "Verde", " " }));
+        cbColores.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        cbColores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Elegir un color --", "Negro", "Blanco", "Gris", "Rojo", "Azul", "Amarillo", "Verde", " " }));
 
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +117,7 @@ public class AltaMultas extends javax.swing.JFrame {
         jLabel3.setText("Tipo de multa");
 
         cbTipoMulta.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        cbTipoMulta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Elegir un tipo de multa --" }));
         cbTipoMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoMultaActionPerformed(evt);
@@ -157,6 +160,31 @@ public class AltaMultas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bAceptar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbColores, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(bBuscar))
+                                    .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(tflugar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
                         .addComponent(jLabel2)
                         .addGap(71, 71, 71)
@@ -164,35 +192,9 @@ public class AltaMultas extends javax.swing.JFrame {
                             .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(tflugar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(bAceptar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(bSalir))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
-                                    .addGap(32, 32, 32)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cbColores, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(tfMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(bBuscar))
-                                        .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 30, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                        .addGap(57, 57, 57)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,9 +205,9 @@ public class AltaMultas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(tflugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,11 +224,11 @@ public class AltaMultas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAceptar)
                     .addComponent(bSalir))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -240,15 +242,23 @@ public class AltaMultas extends javax.swing.JFrame {
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
         try {
             dgt.buscarVehiculo(tfMatricula.getText());
-            if (validarDatos()==false) {
+            if (validarDatos()==true) {
                 if (tfModelo.isEditable()) {
-                    dgt.añadirVehiculo(tfMatricula.getText(),cbColores.getSelectedItem().toString(),tfModelo.getText());
-                    JOptionPane.showMessageDialog(this,"Vehículo añadido");
-                    limpiarCampos();
+                    if (tfMatricula.getText().isEmpty() || tfModelo.getText().isEmpty()) {
+                        JOptionPane.showInputDialog("Tienes que rellenar los datos del vehículo");
+                    }else{
+                        dgt.añadirVehiculo(tfMatricula.getText(),cbColores.getSelectedItem().toString(),tfModelo.getText());
+                        JOptionPane.showMessageDialog(this,"Vehículo añadido");
+                        limpiarCampos();
+                    }
                 }else{
-                    dgt.añadirDatos(tfid.getText(),tfidtipomulta.getText(),tflugar.getText(),tfMatricula.getText());
-                    JOptionPane.showMessageDialog(this, "Multa asignada");
-                    limpiarCampos();
+                    if (cbTipoMulta.getSelectedItem().toString().equalsIgnoreCase("-- Elige un tipo de multa --"))
+                        JOptionPane.showMessageDialog(this, "Tienes que elegir un tipo de multa");
+                    else{
+                        dgt.añadirDatos(tfid.getText(),tfidtipomulta.getText(),tflugar.getText(),tfMatricula.getText());
+                        JOptionPane.showMessageDialog(this, "Multa asignada");
+                        limpiarCampos();
+                    }
                 }
             }else
                 JOptionPane.showMessageDialog(this, "No se han podido añadir los datos a la base de datos");
@@ -346,7 +356,7 @@ public class AltaMultas extends javax.swing.JFrame {
     
     private boolean validarDatos() {
         try {
-            validarTipoMulta();
+            
             validarLugar();
             validarMatricula();
             validarColor();
@@ -360,11 +370,6 @@ public class AltaMultas extends javax.swing.JFrame {
         
     }
 
-    private void validarTipoMulta() {
-        if (cbTipoMulta.getSelectedItem().toString().equalsIgnoreCase("-- Elige un tipo de multa --"));
-            JOptionPane.showMessageDialog(this, "Tienes que elegir un tipo de multa");
-        
-    }
 
     private void validarLugar() {
         if (tflugar.getText().isEmpty())
@@ -436,8 +441,6 @@ public class AltaMultas extends javax.swing.JFrame {
 
     private void limpiarCampos() {
         try{
-            cbTipoMulta.removeAllItems();
-            dgt.rellenarCombo(cbTipoMulta);
             tfidtipomulta.setText("");
             tflugar.setText("");
             tfMatricula.setText("");

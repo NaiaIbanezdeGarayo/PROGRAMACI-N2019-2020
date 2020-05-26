@@ -113,9 +113,25 @@ public class VehiculoMultaBD {
         return listaMultaId;
     }
 
-    
+    public ArrayList<Vehiculo> obtenerMaximoMultasMatricula() throws Exception{
+        ArrayList <Vehiculo> listaMatriculas = new ArrayList<>();
+        
+        String plantilla = "SELECT matricula , count(*) FROM vehiculomulta GROUP BY matricula HAVING COUNT(*) = ( SELECT MAX(contador) FROM ( SELECT id, COUNT(*) contador FROM vehiculomulta GROUP BY matricula ) a);";   					
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        
+        ResultSet resultado = ps.executeQuery();
+        
+        while (resultado.next()) {  
+            
+                Vehiculo v = new Vehiculo();
+                v.setMatricula(resultado.getString("matricula"));
+                
+                listaMatriculas.add(v);
+        }
+       
+        return listaMatriculas;
+    }
 
     
-
    
 }

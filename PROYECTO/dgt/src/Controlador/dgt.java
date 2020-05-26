@@ -304,12 +304,15 @@ public class dgt {
     }
 
     public static void rellenarCombo(JComboBox cbTipoMulta) throws Exception{
-        cbTipoMulta.addItem("-- Elige un tipo de multa --");
-        ArrayList<Multa> listaMulta = mbd.buscarTipoMulta();
-        
-        for (int i = 0; i < listaMulta.size(); i++) {
-            cbTipoMulta.insertItemAt(listaMulta.get(i).getTipomulta(), i);
-        }
+        try{
+            ArrayList<Multa> listaMulta = new ArrayList();
+            listaMulta = mbd.buscarTipoMulta();
+
+            for (int i = 0; i < listaMulta.size(); i++) {
+                cbTipoMulta.insertItemAt(listaMulta.get(i).getTipomulta(), i);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());}
     }
 
     public static void abrirVentanaEstadisticaMultasImpuestas() {
@@ -328,6 +331,21 @@ public class dgt {
             text += listaMultaId.get(i).getTipomulta() +"\n";
         }
         return text; 
+    }
+
+    public static String rellenarDatosEstadisticasVehiculo() throws Exception{
+        ArrayList<Vehiculo> listaMatriculas = new ArrayList();
+        listaMatriculas = vmbd.obtenerMaximoMultasMatricula();
+        String text ="";
+        for (int i = 0; i < listaMatriculas.size(); i++) {
+            text += listaMatriculas.get(i).getMatricula() +"\n";
+        }
+        return text;
+    }
+
+    public static void cerrarVentanaEstadisticas() {
+        mi.dispose();
+        abrirInterfazAdmin();
     }
 
 }

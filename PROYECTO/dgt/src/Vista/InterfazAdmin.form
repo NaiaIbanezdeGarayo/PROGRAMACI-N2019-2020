@@ -54,21 +54,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Estadisticas"/>
           </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mMultasImpuestas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Multas impuestas"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mMultasImpuestasActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mMultasVehiculo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Multas veh&#xed;culo"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mEstadisticaMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="bSalir">
           <Properties>
