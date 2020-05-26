@@ -9,12 +9,20 @@
             <Property name="text" type="java.lang.String" value="Multas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mAltaMulta">
+            <MenuItem class="javax.swing.JMenuItem" name="mA&#xf1;adirTipoMulta">
               <Properties>
-                <Property name="text" type="java.lang.String" value="A&#xf1;adir multa"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir tipo multa"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mAltaMultaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mA&#xf1;adirTipoMultaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mAsignarMulta">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Asignar multa a vehiculo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mAsignarMultaActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mBajaMulta">
@@ -32,25 +40,28 @@
             <Property name="text" type="java.lang.String" value="Vehiculo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mBajaMulta1">
+            <MenuItem class="javax.swing.JMenuItem" name="mDesguazar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Desguazar vehiculo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mBajaMulta1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mDesguazarActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mMultasImpuestas">
+        <Menu class="javax.swing.JMenu" name="mEstadistica">
           <Properties>
             <Property name="text" type="java.lang.String" value="Estadisticas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="mMultasImpuestas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Multas impuestas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mMultasImpuestasActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mMultasVehiculo">
               <Properties>

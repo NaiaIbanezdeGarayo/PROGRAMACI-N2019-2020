@@ -4,12 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Controlador/dgt.java</file>
-            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/QuitarMulta.java</file>
-            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/InterfazAdmin.java</file>
+            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/AñadirTipoMultas.java</file>
             <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Modelo/VehiculoMultaBD.java</file>
-            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/ListadoMulta.java</file>
             <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Modelo/MultaBD.java</file>
-            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Modelo/ReclamacionBD.java</file>
+            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/ListadoMulta.java</file>
+            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/PaginaInicio.java</file>
+            <file>file:/C:/Users/naiai/Desktop/DAW/DAW1.1/PROGRAMACIÓN/PROGRAMACI-N2019-2020/PROYECTO/dgt/src/Vista/AltaMultas.java</file>
         </group>
     </open-files>
 </project-private>

@@ -33,12 +33,13 @@ public class InterfazAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mMultas = new javax.swing.JMenu();
-        mAltaMulta = new javax.swing.JMenuItem();
+        mAñadirTipoMulta = new javax.swing.JMenuItem();
+        mAsignarMulta = new javax.swing.JMenuItem();
         mBajaMulta = new javax.swing.JMenuItem();
         mMultas1 = new javax.swing.JMenu();
-        mBajaMulta1 = new javax.swing.JMenuItem();
-        mMultasImpuestas = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        mDesguazar = new javax.swing.JMenuItem();
+        mEstadistica = new javax.swing.JMenu();
+        mMultasImpuestas = new javax.swing.JMenuItem();
         mMultasVehiculo = new javax.swing.JMenuItem();
         bSalir = new javax.swing.JMenu();
 
@@ -49,13 +50,21 @@ public class InterfazAdmin extends javax.swing.JFrame {
 
         mMultas.setText("Multas");
 
-        mAltaMulta.setText("Añadir multa");
-        mAltaMulta.addActionListener(new java.awt.event.ActionListener() {
+        mAñadirTipoMulta.setText("Añadir tipo multa");
+        mAñadirTipoMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mAltaMultaActionPerformed(evt);
+                mAñadirTipoMultaActionPerformed(evt);
             }
         });
-        mMultas.add(mAltaMulta);
+        mMultas.add(mAñadirTipoMulta);
+
+        mAsignarMulta.setText("Asignar multa a vehiculo");
+        mAsignarMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mAsignarMultaActionPerformed(evt);
+            }
+        });
+        mMultas.add(mAsignarMulta);
 
         mBajaMulta.setText("Quitar multa");
         mBajaMulta.addActionListener(new java.awt.event.ActionListener() {
@@ -69,25 +78,30 @@ public class InterfazAdmin extends javax.swing.JFrame {
 
         mMultas1.setText("Vehiculo");
 
-        mBajaMulta1.setText("Desguazar vehiculo");
-        mBajaMulta1.addActionListener(new java.awt.event.ActionListener() {
+        mDesguazar.setText("Desguazar vehiculo");
+        mDesguazar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mBajaMulta1ActionPerformed(evt);
+                mDesguazarActionPerformed(evt);
             }
         });
-        mMultas1.add(mBajaMulta1);
+        mMultas1.add(mDesguazar);
 
         jMenuBar1.add(mMultas1);
 
-        mMultasImpuestas.setText("Estadisticas");
+        mEstadistica.setText("Estadisticas");
 
-        jMenuItem3.setText("Multas impuestas");
-        mMultasImpuestas.add(jMenuItem3);
+        mMultasImpuestas.setText("Multas impuestas");
+        mMultasImpuestas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mMultasImpuestasActionPerformed(evt);
+            }
+        });
+        mEstadistica.add(mMultasImpuestas);
 
         mMultasVehiculo.setText("Multas vehículo");
-        mMultasImpuestas.add(mMultasVehiculo);
+        mEstadistica.add(mMultasVehiculo);
 
-        jMenuBar1.add(mMultasImpuestas);
+        jMenuBar1.add(mEstadistica);
 
         bSalir.setText("Salir");
         bSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -124,10 +138,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mAltaMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAltaMultaActionPerformed
+    private void mAñadirTipoMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAñadirTipoMultaActionPerformed
         // TODO add your handling code here:
-        dgt.abrirVentanaMultas();
-    }//GEN-LAST:event_mAltaMultaActionPerformed
+        dgt.abrirVentanaTipoMultas();
+        
+    }//GEN-LAST:event_mAñadirTipoMultaActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         // TODO add your handling code here:
@@ -137,17 +152,11 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private void mBajaMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBajaMultaActionPerformed
         // TODO add your handling code here:
         dgt.abrirBajaMulta();
-        /*try {
-            String id = JOptionPane.showInputDialog("Introduce el id de la multa que quieres dar de baja");
-            dgt.bajaMulta(id);
-            JOptionPane.showMessageDialog(this, "La multa seleccionada se ha dado de baja");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }*/
+        
         
     }//GEN-LAST:event_mBajaMultaActionPerformed
 
-    private void mBajaMulta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBajaMulta1ActionPerformed
+    private void mDesguazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mDesguazarActionPerformed
         // TODO add your handling code here:
         try {
             String matricula = JOptionPane.showInputDialog("Introduce la matrícula del vehículo a desguazar");
@@ -155,12 +164,22 @@ public class InterfazAdmin extends javax.swing.JFrame {
         } catch (Exception e) {
         }
         
-    }//GEN-LAST:event_mBajaMulta1ActionPerformed
+    }//GEN-LAST:event_mDesguazarActionPerformed
 
     private void bSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSalirMouseClicked
         // TODO add your handling code here:
         dgt.salirAPaginaIncioIA();
     }//GEN-LAST:event_bSalirMouseClicked
+
+    private void mAsignarMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAsignarMultaActionPerformed
+        // TODO add your handling code here:
+        dgt.abrirVentanaMultas();
+    }//GEN-LAST:event_mAsignarMultaActionPerformed
+
+    private void mMultasImpuestasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mMultasImpuestasActionPerformed
+        // TODO add your handling code here:
+        dgt.abrirVentanaEstadisticaMultasImpuestas();
+    }//GEN-LAST:event_mMultasImpuestasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,13 +220,14 @@ public class InterfazAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu bSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem mAltaMulta;
+    private javax.swing.JMenuItem mAsignarMulta;
+    private javax.swing.JMenuItem mAñadirTipoMulta;
     private javax.swing.JMenuItem mBajaMulta;
-    private javax.swing.JMenuItem mBajaMulta1;
+    private javax.swing.JMenuItem mDesguazar;
+    private javax.swing.JMenu mEstadistica;
     private javax.swing.JMenu mMultas;
     private javax.swing.JMenu mMultas1;
-    private javax.swing.JMenu mMultasImpuestas;
+    private javax.swing.JMenuItem mMultasImpuestas;
     private javax.swing.JMenuItem mMultasVehiculo;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,7 @@
 package Modelo;
 
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 
 
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class Multa {
     
     private String tipomulta;
-    private String lugar;
     private int id;
     private ArrayList<Vehiculo> listaVehiculos;
 
@@ -25,10 +24,9 @@ public class Multa {
         listaVehiculos = new ArrayList();
     }
 
-    public Multa(String tipomulta, String lugar,int id) {
+    public Multa(String tipomulta, int id) {
         this.id = id;
         this.tipomulta = tipomulta;
-        this.lugar = lugar;
     }
 
     public int getId() {
@@ -45,14 +43,6 @@ public class Multa {
 
     public void setTipomulta(String tipomulta) {
         this.tipomulta = tipomulta;
-    }
-
-    public String getLugar() {
-        return lugar;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
     }
 
     public ArrayList<Vehiculo> getListaVehiculos() {

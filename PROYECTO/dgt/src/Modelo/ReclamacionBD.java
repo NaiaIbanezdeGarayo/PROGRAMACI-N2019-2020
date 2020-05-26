@@ -69,5 +69,15 @@ public class ReclamacionBD {
         }
        return listaReclamaciones;
     }
-    
+
+    public void baja(String id) throws Exception{
+        String plantilla = "DELETE FROM reclamacion WHERE idmulta=?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, id);
+        
+        int n = ps.executeUpdate();
+        ps.close();
+        if (n != 1)
+            throw new Exception("El número de filas actualizadas no es uno");
+    }   
 }

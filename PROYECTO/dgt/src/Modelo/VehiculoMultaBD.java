@@ -22,12 +22,14 @@ public class VehiculoMultaBD {
         this.con = con;
     }
 
-    public void añadirMultaVehiculo(String matricula, String id, LocalDate fecha) throws Exception{
-        String plantilla = "INSERT INTO vehiculomulta VALUES (?,?,?);";
+    public void añadirMultaVehiculo(String id, String idmulta,String lugar,String matricula,LocalDate fecha) throws Exception{
+        String plantilla = "INSERT INTO vehiculomulta VALUES (?,?,?,?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, id);
-        ps.setString(2, matricula);
-        ps.setDate(3, java.sql.Date.valueOf(fecha));
+        ps.setString(2, idmulta);
+        ps.setString(3, matricula);
+        ps.setDate(4, java.sql.Date.valueOf(fecha));
+        ps.setString(5, lugar);
         
         
         int n = ps.executeUpdate();
@@ -49,9 +51,11 @@ public class VehiculoMultaBD {
         while (resultado.next()) {  
             
                 VehiculoMulta vm = new VehiculoMulta();
-                vm.setId_multa(resultado.getInt("id_multa"));
+                vm.setId(resultado.getInt("id"));
+                vm.setId_multa(resultado.getInt("idmulta"));
                 vm.setMatricula(resultado.getString("matricula"));
                 vm.setFecha(resultado.getDate("fecha").toLocalDate());
+                vm.setLugar(resultado.getString("lugar"));
                 
                 listaVehiculoMulta.add(vm);
         }
@@ -60,7 +64,7 @@ public class VehiculoMultaBD {
     }
 
     public VehiculoMulta buscarPorId(String id) throws Exception{
-        String plantilla = "SELECT * FROM vehiculomulta WHERE id_multa = ?;";
+        String plantilla = "SELECT * FROM vehiculomulta WHERE idmulta = ?;";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, id);
         
@@ -68,15 +72,50 @@ public class VehiculoMultaBD {
         if (resultado.next())
         {
            VehiculoMulta vm = new VehiculoMulta();
-           vm.setId_multa(resultado.getInt("id_multa"));
+           vm.setId(resultado.getInt("id"));
+           vm.setId_multa(resultado.getInt("idmulta"));
            vm.setMatricula(resultado.getString("matricula"));
            vm.setFecha(resultado.getDate("fecha").toLocalDate());
+           vm.setLugar(resultado.getString("lugar"));
            return vm;
        }
        else
             return null;
     }
 
+    public void baja(String id) throws Exception{
+        String plantilla = "DELETE FROM vehiculomulta WHERE idmulta=?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, id);
+        
+        int n = ps.executeUpdate();
+        ps.close();
+        if (n != 1)
+            throw new Exception("El número de filas actualizadas no es uno");
+    }
+
+    public ArrayList<Multa> obtenerMaximoPorId() throws Exception{
+        ArrayList <Multa> listaMultaId = new ArrayList<>();
+        
+        String plantilla = "SELECT idmulta , count(*) FROM vehiculomulta GROUP BY idmulta HAVING COUNT(*) = (SELECT MAX(contador) FROM ( SELECT id, COUNT(*) contador FROM vehiculomulta GROUP BY idmulta) a);";   					
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        
+        ResultSet resultado = ps.executeQuery();
+        
+        while (resultado.next()) {  
+            
+                Multa m = new Multa();
+                m.setId(resultado.getInt("idmulta"));
+                
+                listaMultaId.add(m);
+        }
+       
+        return listaMultaId;
+    }
+
     
+
     
+
+   
 }

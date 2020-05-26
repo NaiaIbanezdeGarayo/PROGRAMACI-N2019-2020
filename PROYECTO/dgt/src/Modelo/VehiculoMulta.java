@@ -12,17 +12,29 @@ import java.time.LocalDate;
  * @author Naia
  */
 public class VehiculoMulta {
+    private int id;
     private int id_multa;
+    private String lugar;
     private String matricula;
     private LocalDate fecha;
 
     public VehiculoMulta() {
     }
 
-    public VehiculoMulta(int id_multa, String matricula, LocalDate fecha) {
+    public VehiculoMulta(int id, int id_multa, String lugar, String matricula, LocalDate fecha) {
+        this.id = id;
         this.id_multa = id_multa;
+        this.lugar = lugar;
         this.matricula = matricula;
         this.fecha = fecha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId_multa() {
@@ -31,6 +43,14 @@ public class VehiculoMulta {
 
     public void setId_multa(int id_multa) {
         this.id_multa = id_multa;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
     public String getMatricula() {

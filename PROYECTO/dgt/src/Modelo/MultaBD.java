@@ -8,6 +8,7 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 /**
@@ -37,11 +38,10 @@ public class MultaBD {
     }
 
     public void añadirMulta(Multa m) throws Exception{
-        String plantilla = "INSERT INTO multa VALUES (?,?,?);";
+        String plantilla = "INSERT INTO multa VALUES (?,?);";
         PreparedStatement ps = con.prepareStatement(plantilla);
         ps.setString(1, m.getTipomulta());
-        ps.setString(2, m.getLugar());
-        ps.setInt(3, m.getId());
+        ps.setInt(2, m.getId());
         
         int n = ps.executeUpdate();
         ps.close();
@@ -72,11 +72,62 @@ public class MultaBD {
            Multa m = new Multa();
            m.setId(resultado.getInt("id"));
            m.setTipomulta(resultado.getString("tipomulta"));
-           m.setLugar(resultado.getString("lugar"));
            return m;
        }
        else
         return null;
     }
+
+    public ArrayList<Multa> buscarTipoMulta() throws Exception{
+        ArrayList<Multa> listaMultas = new ArrayList();
+        
+        String plantilla = "SELECT * FROM multa;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ResultSet resultado = ps.executeQuery();
+        
+        while(resultado.next())
+        {
+                Multa m = new Multa();
+
+                m.setId(resultado.getInt("id"));
+                m.setTipomulta(resultado.getString("tipomulta"));
+                listaMultas.add(m);
+        }
+       return listaMultas;
+    }
+
+    public Multa buscarMulta(String tipomulta) throws Exception{
+        String plantilla = "SELECT * FROM multa WHERE tipomulta = ?;";
+        PreparedStatement ps = con.prepareStatement(plantilla);
+        ps.setString(1, tipomulta);
+        
+        ResultSet resultado = ps.executeQuery();
+        if (resultado.next())
+        {
+           Multa m = new Multa();
+           m.setId(resultado.getInt("id"));
+           m.setTipomulta(resultado.getString("tipomulta"));
+           return m;
+       }
+       else
+        return null;
+    }
+
+    public ArrayList<Multa> obtenerNombrePorId(ArrayList<Multa> listaMultaId) throws Exception{
+        String plantilla = "SELECT tipomulta FROM multa WHERE id = ?;";
+        for (int i = 0; i < listaMultaId.size(); i++) {
+            PreparedStatement ps = con.prepareStatement(plantilla);
+            ps.setInt(1, listaMultaId.get(i).getId());
+            ResultSet resultado = ps.executeQuery();
+            if (resultado.next())
+            {
+               listaMultaId.get(i).setTipomulta(resultado.getString("tipomulta"));
+            }
+            
+        }
+         return listaMultaId;
+        
+    }
+
     
 }

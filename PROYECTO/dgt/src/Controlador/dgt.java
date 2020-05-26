@@ -17,9 +17,11 @@ import Modelo.VehiculoBD;
 import Modelo.VehiculoMulta;
 import Modelo.VehiculoMultaBD;
 import Vista.AltaMultas;
+import Vista.AñadirTipoMultas;
 import Vista.InterfazAdmin;
 import Vista.InterfazCliente;
 import Vista.ListadoMulta;
+import Vista.MultasImpuestas;
 import Vista.PaginaInicio;
 import Vista.PaginaInicioSesion;
 import Vista.PaginaRegistro;
@@ -43,6 +45,8 @@ public class dgt {
     private static InterfazCliente ic;
     private static ListadoMulta lm;
     private static QuitarMulta qm;
+    private static AñadirTipoMultas atm;
+    private static MultasImpuestas mi;
     
     /*Base de datos*/
     private static BaseDatos bd;
@@ -131,17 +135,16 @@ public class dgt {
     public static boolean generarIdAutomatico(int numAleatorio) throws Exception{
         
         if (mbd.comprobarId(numAleatorio)== true) {
-            am.generarId();
+            atm.generarId();
             return true;
         }else
             return false;
         
     }
 
-    public static void añadirDatos( String tipomulta, String lugar,String id,String matricula) throws Exception{
-        m = new Multa(tipomulta, lugar,Integer.parseInt(id));
-        mbd.añadirMulta(m);
-        vmbd.añadirMultaVehiculo(matricula,id,LocalDate.now());
+    public static void añadirDatos(String id,String idtipomulta,String lugar,String matricula) throws Exception{
+
+        vmbd.añadirMultaVehiculo(id,idtipomulta,lugar,matricula,LocalDate.now());
     }
 
     public static void registrarCliente(String nombre, String apellido, String dni, String usuario, String contrasena) throws Exception{
@@ -198,6 +201,8 @@ public class dgt {
     }
 
     public static void bajaMulta(String id) throws Exception{
+        rbd.baja(id);
+        vmbd.baja(id);
         mbd.baja(id);
     }
 
@@ -208,8 +213,6 @@ public class dgt {
         }else
             am.vehiculoEncontrado(v);
     }
-
-    
 
     public static void abrirListaMulta() {
         ic.dispose();
@@ -262,7 +265,69 @@ public class dgt {
     public static void abrirBajaMulta() {
         ia.dispose();
         qm = new QuitarMulta();
+        qm.setLocationRelativeTo(null);
         qm.setVisible(true);
+    }
+
+    public static void rellenarDatosBaja(String id) throws Exception{
+        m = mbd.buscarPorId(id);
+        vm = vmbd.buscarPorId(id);
+        qm.rellenarDatos(m.getTipomulta(),vm.getMatricula());
+    }
+
+    public static void salirPaginaInicioR() {
+        qm.dispose();
+        ia = new InterfazAdmin();
+        ia.setVisible(true);
+    }
+
+    public static void abrirVentanaTipoMultas() {
+        ia.dispose();
+        atm = new AñadirTipoMultas();
+        atm.setLocationRelativeTo(null);
+        atm.setVisible(true);
+    }
+
+    public static void salirAPaginaInicioTM() {
+        atm.dispose();
+        abrirInterfazAdmin();
+    }
+
+    public static void añadirMulta(String tipomulta, String id) throws Exception{
+        m = new Multa(tipomulta,Integer.parseInt(id));
+        mbd.añadirMulta(m);
+    }
+
+    public static void obtenerIdMulta(String tipomulta) throws Exception{
+        m = mbd.buscarMulta(tipomulta);
+        am.añadirDatosId(String.valueOf(m.getId()));
+    }
+
+    public static void rellenarCombo(JComboBox cbTipoMulta) throws Exception{
+        cbTipoMulta.addItem("-- Elige un tipo de multa --");
+        ArrayList<Multa> listaMulta = mbd.buscarTipoMulta();
+        
+        for (int i = 0; i < listaMulta.size(); i++) {
+            cbTipoMulta.insertItemAt(listaMulta.get(i).getTipomulta(), i);
+        }
+    }
+
+    public static void abrirVentanaEstadisticaMultasImpuestas() {
+        ia.dispose();
+        mi = new MultasImpuestas();
+        mi.setLocationRelativeTo(null);
+        mi.setVisible(true);
+    }
+
+    public static String rellenarDatosEstadistaMultasImpuestas() throws Exception{
+        ArrayList<Multa> listaMultaId = new ArrayList();
+        listaMultaId = vmbd.obtenerMaximoPorId();
+        String text ="";
+        listaMultaId = mbd.obtenerNombrePorId(listaMultaId);
+        for (int i = 0; i < listaMultaId.size(); i++) {
+            text += listaMultaId.get(i).getTipomulta() +"\n";
+        }
+        return text; 
     }
 
 }
